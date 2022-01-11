@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+	<head>
+		<style>
+.container{
+  display: flex;
+}
+.col {
+  flex: 1;
+}
+</style>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Planetary Climate</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+		<link rel="stylesheet" href="line_spacing.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>Planetary Climate</h1>
+					<h4>Introduction</h4>
+				</section>
+
+				<section>
+					<section>
+						<h3>What is climate?</h3>
+					</section>
+					<section>
+						<h4>Machilipatnam</h4>
+						<img data-src="images/Machilipatnam_May.png" alt="May 2000 Temperature in Machilipatnam" width="1000" >
+					</section>
+					<section>
+						<img data-src="images/Machilipatnam_2000.png" alt="Year 2000 Temperature in Machilipatnam" width="1000" >
+					</section>
+					<section>
+						<img data-src="images/Machilipatnam_decade.png" alt="Decade 2000-2010 Temperature in Machilipatnam" width="1000" >
+					</section>
+					<section>
+						<img data-src="images/Machilipatnam_press_decade.png" alt="Decade 2000-2010 Surface Pressure in Machilipatnam" width="1000" >
+					</section>
+					<section>
+						<h4>Climate = (Statistically) steady state</h4>
+					</section>
+					<section>
+						<img data-src="images/Machilipatnam_press_2007.png" alt="Decade 2006-2007 Surface Pressure in Machilipatnam" width="1000" >
+					</section>
+					<section>
+						<h4>Cyclone Yemyin (June 22)</h4>
+<a title="Nilfanion, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Yemyin_2007_track.png"><img width="1024" alt="Yemyin 2007 track" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Yemyin_2007_track.png/1024px-Yemyin_2007_track.png"></a>
+					</section>
+				</section>
+
+
+
+				<section>
+				<section>
+					<h3>Climate of...</h3>
+
+					<ul>
+						<li>Region</li>
+						<li>Time scale</li>
+						<li>Quantity</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Climate Variability</h3>
+
+					<ul>
+						<li>What?</li>
+						<li>How?</li>
+						<li>When?</li>
+					</ul>
+				</section>
+				</section>
+
+				<section>
+						<h3>Studying Climate</h3>
+					<div class="container">
+
+					<div class="col">
+					Surprisingly Simple
+					</div>
+
+
+
+					<div class="col">
+						Surprisingly complex
+					</div>
+
+					</div>
+<a title="Femkemilene, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Climate-system.jpg"><img width="400" alt="Climate-system" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Climate-system.jpg/512px-Climate-system.jpg"></a>
+
+				</section>
+				<section>
+					<h4>Supplementary (but useful!) Material</h4>
+					<div>
+						<a href="https://joymonteiro.github.io/courses/math_methods/slides/lecture1/index.html">Lecture 1 of ECS323</a>
+					</div>
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/0wlrdERu-1E?start=450" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					<div>
+					<a href="https://www.ccmb.res.in/ClimateChangeChallenge/Comix/What_is_climate_change_how_we_study_it">Climate Comix (CCMB, Hyderabad)</a>
+				</div>
+
+				</section>
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				hash: true,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/highlight/highlight.js' },
+					{ src: 'plugin/math/math.js'},
+					{src: 'plugin/chalkboard/chalkboard.js'},
+					{ src: 'plugin/audio-slideshow/RecordRTC.js', condition: function( ) { return !!document.body.classList; } },
+					{ src: 'plugin/audio-slideshow/slideshow-recorder.js', condition: function( ) { return !!document.body.classList; } },
+					{ src: 'plugin/audio-slideshow/audio-slideshow.js', condition: function( ) { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true }
+
+				],
+				math: {
+					config: 'TeX-AMS_HTML-full',
+					TeX: { Macros: { angstrom: "{\\mathring{A}}" } }
+			},
+				audio: {
+					prefix: 'audio/',
+					suffix: '.MP3',
+				},
+
+				chalkboard: {
+					src: 'chalkboard.json',
+					theme: 'whiteboard',
+					// readonly: true,
+				},
+				keyboard: {
+						67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+						66: function() { RevealChalkboard.toggleChalkboard() },     // toggle chalkboard when 'b' is pressed
+						46: function() { RevealChalkboard.clear() },        // clear chalkboard when 'DEL' is pressed
+						 8: function() { RevealChalkboard.reset() },        // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+						68: function() { RevealChalkboard.download() },     // downlad recorded chalkboard drawing when 'd' is pressed
+						88: function() { RevealChalkboard.colorNext() },    // cycle colors forward when 'x' is pressed
+						89: function() { RevealChalkboard.colorPrev() },    // cycle colors backward when 'y' is pressed
+				},
+			});
+		</script>
+	</body>
+</html>

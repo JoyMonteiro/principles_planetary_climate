@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+	<head>
+		<style>
+.container{
+  display: flex;
+}
+.col {
+  flex: 1;
+}
+</style>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Planetary Climate</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+		<link rel="stylesheet" href="line_spacing.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>Planetary Climate</h1>
+					<h4>Big Questions</h4>
+				</section>
+
+				<section>
+					<h4>Historical vs. Ahistorical sciences</h4>
+				</section>
+
+				<section>
+					<h4>Formation of the crust</h4>
+					<div>
+						<a title="Tim Bertelink, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Hadean.png"><img width="864" alt="Hadean" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Hadean.png/1024px-Hadean.png"></a>
+					</div>
+					<div class="fragment">
+						<ul>
+							<li>How long?</li>
+							<li>Dependence on atmospheric composition?</li>
+							<li>Implications for energy sources</li>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+				<section>
+					<h4>Faint Young Sun Problem</h4>
+					<div>
+<a title="ESO/S. Steinhöfel, CC BY 4.0 &lt;https://creativecommons.org/licenses/by/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Diagram_of_the_life_of_Sun-like_stars.jpg"><img width="512" alt="Diagram of the life of Sun-like stars" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Diagram_of_the_life_of_Sun-like_stars.jpg/512px-Diagram_of_the_life_of_Sun-like_stars.jpg"></a>
+					</div>
+					<div class="fragment">
+						<ul>
+							<li>Atmospheric composition?</li>
+							<li>Long term stability of surface temperature</li>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<h4>Simple things used in unusual ways!</h4>
+					<a href="https://www.jsg.utexas.edu/fu/files/SaganMullen1972.pdf" target="_blank"><img src="images/Sagan_Mullen.png" alt=""></a>
+					<div>Sagan and Mullen (1972)</div>
+				</section>
+				</section>
+
+				<section>
+					<h4>Goldilocks zone</h4>
+					<a title="Chester Harman, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Diagram_of_different_habitable_zone_regions_by_Chester_Harman.jpg"><img width="512" alt="Diagram of different habitable zone regions by Chester Harman" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Diagram_of_different_habitable_zone_regions_by_Chester_Harman.jpg/512px-Diagram_of_different_habitable_zone_regions_by_Chester_Harman.jpg"></a>
+					<div>
+						<ul>
+							<li>What determines it?</li>
+							<li>If Earth, Mars, Venus were similar to begin with, how did they end up so different?</li>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<h4>Neoproterozoic Snowball Earth</h4>
+					<a href="https://arstechnica.com/science/2017/08/the-origin-of-complex-life-on-earth-just-got-a-little-less-mysterious/" target="_blank"><img width="512" src="https://cdn.arstechnica.net/wp-content/uploads/2017/08/SnowballEarthHorizontal.jpg" alt="Ars Technica"></a>
+					<div class="fragment">
+						<ul>
+							<li>What caused it?</li>
+							<li>How did we get out of it?</li>
+							<li>What followed?</li>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<h4>Closer to home</h4>
+					<ul>
+						<li>Eocene's equable climate</li>
+						<li>The stable(?) Holocene</li>
+						<li>Anthropocene</li>
+					</ul>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				hash: true,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/highlight/highlight.js' },
+					{ src: 'plugin/math/math.js'},
+					{src: 'plugin/chalkboard/chalkboard.js'},
+					{ src: 'plugin/audio-slideshow/RecordRTC.js', condition: function( ) { return !!document.body.classList; } },
+					{ src: 'plugin/audio-slideshow/slideshow-recorder.js', condition: function( ) { return !!document.body.classList; } },
+					{ src: 'plugin/audio-slideshow/audio-slideshow.js', condition: function( ) { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true }
+
+				],
+				math: {
+					config: 'TeX-AMS_HTML-full',
+					TeX: { Macros: { angstrom: "{\\mathring{A}}" } }
+			},
+				audio: {
+					prefix: 'audio/',
+					suffix: '.MP3',
+				},
+
+				chalkboard: {
+					src: 'chalkboard.json',
+					theme: 'whiteboard',
+					// readonly: true,
+				},
+				keyboard: {
+						67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+						66: function() { RevealChalkboard.toggleChalkboard() },     // toggle chalkboard when 'b' is pressed
+						46: function() { RevealChalkboard.clear() },        // clear chalkboard when 'DEL' is pressed
+						 8: function() { RevealChalkboard.reset() },        // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+						68: function() { RevealChalkboard.download() },     // downlad recorded chalkboard drawing when 'd' is pressed
+						88: function() { RevealChalkboard.colorNext() },    // cycle colors forward when 'x' is pressed
+						89: function() { RevealChalkboard.colorPrev() },    // cycle colors backward when 'y' is pressed
+				},
+			});
+		</script>
+	</body>
+</html>
