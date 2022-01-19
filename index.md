@@ -19,5 +19,5 @@ just navigate to that slide (using arrow keys or the space bar),
 and then press play. This is useful if you want to revisit some
 part of the lecture skipping other parts.
 
-* Lecture 1: [Introduction](./courses/planetary_climate/lecture1/index.html)
-* Lecture 2: [Big Questions](./courses/planetary_climate/lecture2/index.html)
+* Lecture 1: [Introduction](./slides/lecture1/index.html)
+* Lecture 2: [Big Questions](./slides/lecture2/index.html)
