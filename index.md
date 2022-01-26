@@ -21,3 +21,5 @@ part of the lecture skipping other parts.
 
 * Lecture 1: [Introduction](./slides/lecture1/index.html)
 * Lecture 2: [Big Questions](./slides/lecture2/index.html)
+* Lecture 3: [Energy Balance](./slides/lecture2.1/index.html)
+* Lecture 4: [Blackbody Radiation](./slides/lecture3.1/index.html)

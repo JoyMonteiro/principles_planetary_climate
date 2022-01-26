@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+	<head>
+		<style>
+.container{
+  display: flex;
+}
+.col {
+  flex: 1;
+}
+</style>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Planetary Climate</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+		<link rel="stylesheet" href="line_spacing.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>Planetary Climate</h1>
+					<h4>Blackbody radiation</h4>
+				</section>
+
+				<section>
+					<h3>Spherical Coordinates and Solid Angle</h3>
+					<a title="Andy Anderson, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Solid_Angle,_1_Steradian.svg"><img width="400" alt="Solid Angle, 1 Steradian" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Solid_Angle%2C_1_Steradian.svg/512px-Solid_Angle%2C_1_Steradian.svg.png"></a>
+				</section>
+
+				<section>
+
+					<section>
+						<h3>Energy and irradiance</h3>
+						<div class="fragment">\[ B(\nu, T) = \frac{2h\nu^3}{c^2}\frac{1}{e^{\frac{h\nu}{kT}} - 1} \]</div>
+
+					</section>
+
+					<section>
+						<h3>Total irradiance</h3>
+
+						<div>
+						\[ B(u, T) = \frac{2k^3T^3}{h^2c^2}\frac{u^3}{e^{u} - 1},\ u=\frac{h\nu}{kT} \]
+						</div>
+						<div>
+							\[ \int_{} = \sigma T^4 \]
+						</div>
+					</section>
+
+					<section data-background-color="brown">
+						<h3>Electromagnetic Spectrum</h3>
+						<a title="Inductiveload, NASA, CC BY-SA 3.0 &lt;http://creativecommons.org/licenses/by-sa/3.0/&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:EM_Spectrum_Properties_edit.svg"><img width="1024" alt="EM Spectrum Properties edit" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/EM_Spectrum_Properties_edit.svg/512px-EM_Spectrum_Properties_edit.svg.png"></a>
+					</section>
+
+					<section>
+						<h3>Observations: Sun</h3>
+<a title="Sch, CC BY-SA 3.0 &lt;http://creativecommons.org/licenses/by-sa/3.0/&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:EffectiveTemperature_300dpi_e.png"><img width="1024" alt="EffectiveTemperature 300dpi e" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/EffectiveTemperature_300dpi_e.png/1024px-EffectiveTemperature_300dpi_e.png"></a>
+					</section>
+
+					<section>
+						<h3>Earth</h3>
+						<a title="Lukas Kluft, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Spectral_OLR.png"><img width="1024" alt="Spectral OLR" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Spectral_OLR.png/1024px-Spectral_OLR.png"></a>
+					</section>
+
+
+				</section>
+
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				hash: true,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/highlight/highlight.js' },
+					{ src: 'plugin/math/math.js'},
+					{src: 'plugin/chalkboard/chalkboard.js'},
+					{ src: 'plugin/audio-slideshow/RecordRTC.js', condition: function( ) { return !!document.body.classList; } },
+					{ src: 'plugin/audio-slideshow/slideshow-recorder.js', condition: function( ) { return !!document.body.classList; } },
+					{ src: 'plugin/audio-slideshow/audio-slideshow.js', condition: function( ) { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true }
+
+				],
+				math: {
+					config: 'TeX-AMS_HTML-full',
+					TeX: { Macros: { angstrom: "{\\mathring{A}}" } }
+			},
+				audio: {
+					prefix: 'audio/',
+					suffix: '.MP3',
+				},
+
+				chalkboard: {
+					src: 'chalkboard.json',
+					theme: 'whiteboard',
+					// readonly: true,
+				},
+				keyboard: {
+						67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+						66: function() { RevealChalkboard.toggleChalkboard() },     // toggle chalkboard when 'b' is pressed
+						46: function() { RevealChalkboard.clear() },        // clear chalkboard when 'DEL' is pressed
+						 8: function() { RevealChalkboard.reset() },        // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+						68: function() { RevealChalkboard.download() },     // downlad recorded chalkboard drawing when 'd' is pressed
+						88: function() { RevealChalkboard.colorNext() },    // cycle colors forward when 'x' is pressed
+						89: function() { RevealChalkboard.colorPrev() },    // cycle colors backward when 'y' is pressed
+				},
+			});
+		</script>
+	</body>
+</html>
