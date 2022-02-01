@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+	<head>
+		<style>
+.container{
+  display: flex;
+}
+.col {
+  flex: 1;
+}
+
+.center {
+
+  margin: auto;
+
+  width: 60%;
+
+  padding: 10px;
+
+}
+</style>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Planetary Climate</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+		<link rel="stylesheet" href="line_spacing.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>Planetary Climate</h1>
+					<h4>Zero-dimensional Model</h4>
+				</section>
+				<section>
+					<section>
+						<h4>Energy Source/Sink</h4>
+						<div class="container">
+							<div class="col">
+								\[ R_i \to \]
+							</div>
+							<div class="col">
+								<a title="Apollo 17, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:The_Earth_seen_from_Apollo_17.jpg"><img width="512" alt="The Earth seen from Apollo 17" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/512px-The_Earth_seen_from_Apollo_17.jpg"></a>
+							</div>
+							<div class="col">
+								 \[ R_o \to \]
+							</div>
+						</div>
+
+
+					</section>
+
+					<section>
+						<h4>Energy balance</h4>
+						<div class="container">
+							<div class="col">
+								\[ R_s \to \]
+								<div>
+								 \[ \leftarrow \alpha R_s \]
+								</div>
+							</div>
+
+							<div class="col">
+								<a title="Apollo 17, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:The_Earth_seen_from_Apollo_17.jpg"><img width="512" alt="The Earth seen from Apollo 17" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/512px-The_Earth_seen_from_Apollo_17.jpg"></a>
+							</div>
+							<div class="col">
+								 \[ R_p \to \]
+
+							</div>
+						</div>
+
+						<div class="fragment">
+							\[ R_s = ?,\ R_p = ?,\ \alpha = ? \]
+						</div>
+
+
+					</section>
+
+
+
+
+				<section>
+					<h4>Energy balance</h4>
+
+					<div class="container">
+
+					<div class="col">
+					\[ R_s \propto \sigma T_s^4\]
+
+					\[ R_p = \sigma T_e^4  \]
+					</div>
+
+					<div class="col">
+					<div class="fragment">
+						\[  T_e = ?,\  \alpha \propto ? \]
+					</div>
+
+					<div class="fragment">
+					<div>
+						\[  T_e = T_{surf},\  \alpha = \alpha_{surf} \]
+					</div>
+
+					</div>
+					</div>
+
+					</div>
+					<div class="fragment">
+						$\frac{S(1 - \alpha_{surf})}{4} = \sigma T_{surf}^4$
+					</div>
+
+
+				</section>
+			</section>
+
+
+								<section>
+								<section>
+									<h4>Moon Local Temperature</h4>
+									<div class="center">
+									<div style="background-color:white;width:500px;">
+									<img data-src="images/Moon_Mean_Temperature.png" alt="Williams et al., Icarus 2017" width="500" >
+
+									</div>
+									<div>Williams et al., Icarus 2017</div>
+									</div>
+
+								</section>
+								<section>
+								<h4>Day/Night Changes</h4>
+								<div class="center">
+								<div style="background-color:white;width:600px;">
+								<img data-src="images/Moon_Local_Temperature.png" alt="Williams et al., Icarus 2017" width="600" >
+
+								</div>
+								<div>Williams et al., Icarus 2017</div>
+								</div>
+
+								</section>
+
+								</section>
+
+
+				<section>
+					<h4>Shell Model</h4>
+
+					<ul class="fragment">
+						<li>How much is radiated?</li>
+						<li>From where is it radiated?</li>
+					</ul>
+				</section>
+
+
+
+
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				hash: true,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/highlight/highlight.js' },
+					{ src: 'plugin/math/math.js'},
+					{src: 'plugin/chalkboard/chalkboard.js'},
+					{ src: 'plugin/audio-slideshow/RecordRTC.js', condition: function( ) { return !!document.body.classList; } },
+					{ src: 'plugin/audio-slideshow/slideshow-recorder.js', condition: function( ) { return !!document.body.classList; } },
+					{ src: 'plugin/audio-slideshow/audio-slideshow.js', condition: function( ) { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true }
+
+				],
+				math: {
+					config: 'TeX-AMS_HTML-full',
+					TeX: { Macros: { angstrom: "{\\mathring{A}}" } }
+			},
+				audio: {
+					prefix: 'audio/',
+					suffix: '.MP3',
+				},
+
+				chalkboard: {
+					src: 'chalkboard.json',
+					theme: 'whiteboard',
+					// readonly: true,
+				},
+				keyboard: {
+						67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+						66: function() { RevealChalkboard.toggleChalkboard() },     // toggle chalkboard when 'b' is pressed
+						46: function() { RevealChalkboard.clear() },        // clear chalkboard when 'DEL' is pressed
+						 8: function() { RevealChalkboard.reset() },        // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+						68: function() { RevealChalkboard.download() },     // downlad recorded chalkboard drawing when 'd' is pressed
+						88: function() { RevealChalkboard.colorNext() },    // cycle colors forward when 'x' is pressed
+						89: function() { RevealChalkboard.colorPrev() },    // cycle colors backward when 'y' is pressed
+				},
+			});
+		</script>
+	</body>
+</html>
