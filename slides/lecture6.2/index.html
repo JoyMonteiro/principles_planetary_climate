@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+	<head>
+		<style>
+.container{
+  display: flex;
+}
+.col {
+  flex: 1;
+}
+.center {
+
+  margin: auto;
+
+  width: 60%;
+
+  padding: 10px;
+
+}
+</style>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Planetary Climate</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+		<link rel="stylesheet" href="line_spacing.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>Planetary Climate</h1>
+					<h4>Atmospheric Radiative Transfer</h4>
+				</section>
+
+				<section>
+					<h4>Two-stream equations</h4>
+
+						\[\begin{aligned}
+						\frac{d}{d\tau_\nu}I_+ &= - I_+ + \pi B(\nu, T(\tau_\nu))\\
+						\frac{d}{d\tau_\nu}I_- &=  I_- - \pi B(\nu, T(\tau_\nu))
+						\end{aligned}
+						\]
+
+				</section>
+
+				<section>
+					<h4>Solutions</h4>
+					\[\begin{aligned}
+					I_+(\tau) &= I_+(0)e^{-\tau} + \int_0^\tau \pi B(T(\tau))e^{-(\tau - \tau')}d\tau'\\
+					I_-(\tau) &= I_-(\tau_\infty)e^{-(\tau_\infty - \tau)} + \int_\tau^{\tau_\infty} \pi B(T(\tau))e^{-(\tau - \tau')}d\tau'
+					\end{aligned}\]
+				</section>
+
+				<section>
+					<h4>Solutions</h4>
+
+					<ul>
+						<li>Beers Law</li>
+						<li class="fragment">Infinite Isothermal Medium</li>
+						<li class="fragment">Finite Isothermal Slab</li>
+					</ul>
+				</section>
+
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				hash: true,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/highlight/highlight.js' },
+					{ src: 'plugin/math/math.js'},
+					{src: 'plugin/chalkboard/chalkboard.js'},
+					{ src: 'plugin/audio-slideshow/RecordRTC.js', condition: function( ) { return !!document.body.classList; } },
+					{ src: 'plugin/audio-slideshow/slideshow-recorder.js', condition: function( ) { return !!document.body.classList; } },
+					{ src: 'plugin/audio-slideshow/audio-slideshow.js', condition: function( ) { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true }
+
+				],
+				math: {
+					config: 'TeX-AMS_HTML-full',
+					TeX: { Macros: { angstrom: "{\\mathring{A}}" } }
+			},
+				audio: {
+					prefix: 'audio/',
+					suffix: '.MP3',
+				},
+
+				chalkboard: {
+					src: 'chalkboard.json',
+					theme: 'whiteboard',
+					// readonly: true,
+				},
+				keyboard: {
+						67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+						66: function() { RevealChalkboard.toggleChalkboard() },     // toggle chalkboard when 'b' is pressed
+						46: function() { RevealChalkboard.clear() },        // clear chalkboard when 'DEL' is pressed
+						 8: function() { RevealChalkboard.reset() },        // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+						68: function() { RevealChalkboard.download() },     // downlad recorded chalkboard drawing when 'd' is pressed
+						88: function() { RevealChalkboard.colorNext() },    // cycle colors forward when 'x' is pressed
+						89: function() { RevealChalkboard.colorPrev() },    // cycle colors backward when 'y' is pressed
+				},
+			});
+		</script>
+	</body>
+</html>

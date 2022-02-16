@@ -27,3 +27,5 @@ part of the lecture skipping other parts.
 * Lecture 6: [0-d Model: 2](./slides/lecture4.1/index.html)
 * Lecture 7: [Notebook: Ice-free and Snowball States](./slides/lecture4.2/index.html)
 * Lecture 8: [Notebook: Zero dimensional climate model](./slides/lecture5.1/index.html)
+* Lecture 9: [Towards 1-d Models](./slides/lecture6.1/index.html)
+* Lecture 10: [Atmospheric Radiative Transfer](./slides/lecture6.2/index.html)
