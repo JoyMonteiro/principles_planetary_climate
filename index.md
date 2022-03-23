@@ -31,3 +31,5 @@ part of the lecture skipping other parts.
 * Lecture 10: [Atmospheric Radiative Transfer](./slides/lecture6.2/index.html)
 * Lecture 11: [Optically thick/thin limits](./slides/lecture7.1/index.html)
 * Lecture 12: [Grey Gas Radiative Transfer](./slides/lecture7.2/index.html)
+* Lecture 13: [Modelling Radiative Equilibrium](./slides/lecture8.1/index.html)
+* Lecture 14: [Thermodynamics of Dry Air](./slides/lecture8.2/index.html)
