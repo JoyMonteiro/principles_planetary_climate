@@ -33,3 +33,5 @@ part of the lecture skipping other parts.
 * Lecture 12: [Grey Gas Radiative Transfer](./slides/lecture7.2/index.html)
 * Lecture 13: [Modelling Radiative Equilibrium](./slides/lecture8.1/index.html)
 * Lecture 14: [Thermodynamics of Dry Air](./slides/lecture8.2/index.html)
+* Lecture 15: [Role of the Surface](./slides/lecture9.1/index.html)
+* Lecture 16: [Modelling Radiative-Convective Equilibrium](./slides/lecture9.2/index.html)
