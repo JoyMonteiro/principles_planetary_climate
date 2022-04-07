@@ -35,3 +35,5 @@ part of the lecture skipping other parts.
 * Lecture 14: [Thermodynamics of Dry Air](./slides/lecture8.2/index.html)
 * Lecture 15: [Role of the Surface](./slides/lecture9.1/index.html)
 * Lecture 16: [Modelling Radiative-Convective Equilibrium](./slides/lecture9.2/index.html)
+* Lecture 17: [Thermodynamics of Moist Air](./slides/lecture10.1/index.html)
+* Lecture 18: [Radiative Transfer in Real Gases](./slides/lecture10.2/index.html)
