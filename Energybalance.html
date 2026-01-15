@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Notes: Energy Balance & Zero-Dimensional Models</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <!-- MathJax for LaTeX Rendering -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code&display=swap');
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; }
+        .math-block { overflow-x: auto; padding: 1rem 0; }
+        code { font-family: 'Fira Code', monospace; background: #f1f5f9; padding: 0.2rem 0.4rem; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <div class="max-w-4xl mx-auto px-6 py-12 bg-white shadow-sm border-x border-slate-200 min-h-screen">
+        <!-- Header -->
+        <header class="border-b border-slate-200 pb-8 mb-8 text-center">
+            <h1 class="text-4xl font-bold text-slate-900 mb-2">Lecture 1: Fundamentals & Zero-Dimensional Models</h1>
+            <p class="text-slate-500">Global Energy Balance and Conservation Laws</p>
+        </header>
+
+        <!-- Section 1 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 border-l-4 border-blue-500 pl-4">1. The Modeling Framework: Conservation Laws</h2>
+            <p class="mb-4">
+                Climate modeling is built on the foundation of <strong>Conservation Laws</strong>. In physics, we define modeling by tracking a quantity as it moves through a system: <em>"What comes in, what goes out, and what moves it around."</em>
+            </p>
+            <div class="bg-blue-50 p-6 rounded-xl border border-blue-100 mb-6">
+                <h3 class="font-semibold text-blue-800 mb-2 text-lg">Why Energy?</h3>
+                <p class="text-blue-900">
+                    While we could model mass (water, gases, minerals), energy is unique. Every component of the Earth system—oceans, atmosphere, ice—can be translated into an <strong>Energy Value</strong>, allowing for a unified balance sheet of the planet's state.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 2 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 border-l-4 border-blue-500 pl-4">2. Spatial and Temporal Scaling</h2>
+            <p class="mb-4 text-slate-700">
+                Climate models are only valid within specific scales. A model for a monsoon (months) looks very different from a model for silicate weathering (millions of years).
+            </p>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse mb-6">
+                    <thead>
+                        <tr class="bg-slate-100 border-b border-slate-200">
+                            <th class="p-3 text-sm font-bold uppercase text-slate-600">Process</th>
+                            <th class="p-3 text-sm font-bold uppercase text-slate-600">Time Scale</th>
+                            <th class="p-3 text-sm font-bold uppercase text-slate-600">Drivers</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm">
+                        <tr class="border-b border-slate-100">
+                            <td class="p-3 font-semibold">Water Cycle</td>
+                            <td class="p-3">Weeks to Months</td>
+                            <td class="p-3">Evaporation, Precipitation</td>
+                        </tr>
+                        <tr class="border-b border-slate-100">
+                            <td class="p-3 font-semibold">Biology ($CO_2$)</td>
+                            <td class="p-3">Seasonal</td>
+                            <td class="p-3">Deciduous growth cycles</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold">Geology</td>
+                            <td class="p-3">$10^5+$ Years</td>
+                            <td class="p-3">Volcanism, Weathering</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 3 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 border-l-4 border-blue-500 pl-4">3. Earth's Energy Budget</h2>
+            <p class="mb-6">
+                To understand the Earth's climate, we must look at the quantitative breakdown of energy fluxes. The figure below illustrates the "Global Annual Average" of energy flowing into and out of the Earth system.
+            </p>
+            
+            <!-- NASA IMAGE PLACEHOLDER -->
+            <div class="my-8 rounded-lg overflow-hidden border border-slate-200 shadow-md bg-slate-200">
+                <img src="nasa_energy_budget.jpg" 
+                     alt="NASA Earth Energy Budget Poster" 
+                     class="w-full h-auto block"
+                     loading="lazy">
+                <p class="p-4 bg-slate-100 text-xs text-slate-600 italic border-t border-slate-200">
+                    Figure: NASA Earth's Energy Budget. All values are in $W/m^2$. Source: nasa_energy_budget.jpg
+                </p>
+            </div>
+
+            <h3 class="text-xl font-bold text-slate-800 mt-8 mb-4">Key Components of the Balance</h3>
+            
+            <div class="space-y-6 text-slate-700">
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-1">Incoming Solar Radiation (Shortwave)</h4>
+                    <p>The total solar input is $\approx 340.4\text{ W/m}^2$. However, about <strong>29% ($\approx 100\text{ W/m}^2$)</strong> is immediately reflected back to space by clouds, the atmosphere, and the surface (Albedo).</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-1 text-lg">The Surface Imbalance Paradox</h4>
+                    <p>The surface only absorbs $\approx 163\text{ W/m}^2$ of direct solar energy, yet it emits $\approx 398\text{ W/m}^2$ of thermal radiation. This is only possible because of the <strong>Greenhouse Effect</strong>.</p>
+                </div>
+
+                <div class="bg-amber-50 p-6 rounded-xl border border-amber-200">
+                    <h4 class="font-bold text-amber-800 mb-2">Back Radiation Mechanism</h4>
+                    <p class="text-amber-900 text-sm">
+                        The "extra" energy comes from <strong>Back Radiation</strong> ($\approx 340.3\text{ W/m}^2$). The atmosphere absorbs thermal energy emitted by the surface and re-radiates it in all directions—including back down. This recycling of energy allows the surface to reach a much warmer equilibrium temperature than solar input alone would permit.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-1">Non-Radiative Cooling</h4>
+                    <p>The surface also sheds energy via fluid dynamics:</p>
+                    <ul class="list-disc list-inside ml-4 space-y-1">
+                        <li><strong>Evapotranspiration (Latent Heat):</strong> $\approx 86.4\text{ W/m}^2$. Energy used for evaporation, released during condensation.</li>
+                        <li><strong>Sensible Heat (Conduction/Convection):</strong> $\approx 18.4\text{ W/m}^2$. Direct heat transfer to the lower atmosphere.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 border-l-4 border-blue-500 pl-4">4. Zero-Dimensional (0D) vs. Multi-Box Models</h2>
+            <p class="mb-4">
+                A <strong>Zero-Dimensional (0D) Model</strong> treats the entire planet as a single point with one temperature $T$. 
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                    <span class="font-bold block mb-1">When it works:</span>
+                    <p class="text-sm">On the Moon, every point acts as its own independent 0D system because there is no atmosphere to transport heat ($T_{day} \approx 400\text{K}$, $T_{night} \approx 100\text{K}$).</p>
+                </div>
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                    <span class="font-bold block mb-1">When it fails:</span>
+                    <p class="text-sm">On Earth, the atmosphere and ocean transport massive amounts of energy, making a single global temperature a poor representation of local climates.</p>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-slate-800 mb-4">Meridional Transport</h3>
+            <p class="mb-4 text-slate-700">
+                Earth is an energy engine moving heat from the equator (surplus) to the poles (deficit). To model this, we move toward <strong>Multi-Box Models</strong>:
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-slate-700 ml-4 mb-6">
+                <li><strong>Equatorial Box:</strong> Receives high solar input; exports heat via circulation.</li>
+                <li><strong>Polar Box:</strong> Receives low solar input; imports heat from the tropics to reach balance.</li>
+            </ul>
+            
+            <p class="text-slate-700 p-4 bg-slate-100 rounded border-l-4 border-slate-400">
+                The efficiency of this transport depends on planetary rotation. High rotation (Earth) hinders transport via Coriolis forces, creating large gradients. Slow rotation allows for more efficient transport and more uniform temperatures.
+            </p>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-16 pt-8 border-t border-slate-200 text-center text-slate-400 text-sm">
+            <p>Next Topic: Black Body Radiation & the Stefan-Boltzmann Law</p>
+        </footer>
+    </div>
+
+</body>
+</html>
