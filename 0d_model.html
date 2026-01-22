@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Notes: Zero-Dimensional Energy Balance Models</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .thinking-point { border-left: 4px solid #3b82f6; background-color: #eff6ff; padding: 1.5rem; border-radius: 0 0.75rem 0.75rem 0; margin: 2rem 0; }
+        .challenge-box { border: 2px dashed #10b981; background-color: #f0fdf4; padding: 1.5rem; border-radius: 0.75rem; margin: 2rem 0; }
+        .math-highlight { background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 1rem; border-radius: 0.5rem; font-family: 'Fira Code', monospace; }
+        .component-label { font-size: 0.75rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 leading-relaxed">
+
+    <div class="max-w-4xl mx-auto px-6 py-12 bg-white shadow-sm border-x border-slate-200 min-h-screen">
+        <!-- Header -->
+        <header class="border-b border-slate-200 pb-8 mb-8 text-center">
+            <h1 class="text-4xl font-bold text-slate-900 mb-2">Zero-Dimensional Radiation Balance</h1>
+            <p class="text-slate-500 italic text-lg">"Building a planetary model from the ground up." — Jan 19 & 20 Lectures</p>
+        </header>
+
+        <!-- Section 1: Model Structure -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 border-l-4 border-blue-500 pl-4">1. The Model Structure</h2>
+            <p class="mb-4 text-slate-700">
+                As developed in our recent lectures, we build this model by applying conservation laws to <strong>Energy ($E$)</strong>. Every climate model, regardless of complexity, is built on four core pillars:
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 text-sm">
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg shadow-sm">
+                    <span class="component-label text-blue-600">Inputs & Outputs</span>
+                    <p>Primarily <strong>Temperature ($T$)</strong>. In this 0D setup, $T$ serves as both the measurable state we input to find parameters and the output we solve for.</p>
+                </div>
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg shadow-sm">
+                    <span class="component-label text-red-600">The Rule</span>
+                    <p><strong>Conservation of Energy</strong>: The time-rate of change $\frac{dE}{dt}$ equals Energy In minus Energy Out.</p>
+                </div>
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg shadow-sm">
+                    <span class="component-label text-emerald-600">Parameters</span>
+                    <p>Changeable planetary properties like <strong>Albedo ($\alpha$)</strong> and the <strong>Solar Constant ($L_*$)</strong>.</p>
+                </div>
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg shadow-sm">
+                    <span class="component-label text-slate-600">Physical Constants</span>
+                    <p>Universal, unchanging values like the <strong>Stefan–Boltzmann constant ($\sigma$)</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Equations -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 border-l-4 border-blue-500 pl-4">2. The Equilibrium Equation</h2>
+            <div class="bg-slate-900 text-white p-6 rounded-lg text-center shadow-lg mb-6">
+                <p class="text-sm uppercase tracking-widest text-slate-400 mb-2">The 0D Balance Condition</p>
+                <h2 class="text-3xl font-bold">$\sigma T^4 = \frac{1}{4}(1 - \alpha)L_*$</h2>
+            </div>
+
+            <div class="space-y-4 text-slate-700 text-sm">
+                <h3 class="font-bold text-slate-900 uppercase tracking-tight">The Continuum Assumption & LTE</h3>
+                <p>When applying $\sigma T^4$, we make a vital conceptual jump. We don't think about emission from individual gas particles. Instead, we bridge microscopic behavior with macroscopic rules using <strong>Local Thermodynamic Equilibrium (LTE)</strong>. This allows us to treat the atmosphere as a <strong>continuum</strong>—a blackbody at temperature $T$—where radiation depends only on $T$.</p>
+            </div>
+        </section>
+
+        <!-- Section 3: Data Assimilation -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 border-l-4 border-blue-500 pl-4">3. Data Assimilation & Analytical Profiles</h2>
+            <p class="mb-4 text-slate-700">How do we map our abstract "isothermal dot" $T$ to a real, 3D planet? This is the <strong>Data Assimilation</strong> problem.</p>
+
+            <div class="thinking-point">
+                <h3 class="font-bold text-blue-800 mb-2">💡 Thinking Point 1: Averaging Challenges</h3>
+                <div class="space-y-6 text-blue-900 text-sm">
+                    <div>
+                        <p class="font-semibold underline mb-1">A. Spatial Weighting (The Grid Problem)</p>
+                        <p>Satellite data is usually provided on equiangular grids ($1^\circ \times 1^\circ$). However, a $1^\circ$ "box" at the Equator covers far more surface area than a $1^\circ$ "box" near the Pole. To infer a single global $T$, we must apply <strong>Cosine Weighting</strong> to account for the true geometry of the sphere.</p>
+                    </div>
+
+                    <div>
+                        <p class="font-semibold underline mb-1">B. Mass & Pressure Weighting</p>
+                        <p>Temperature is a proxy for <strong>Average Kinetic Energy</strong>. Since 90% of Earth's air mass is in the lower atmosphere, we must use <strong>Pressure Weighting ($dp/g$)</strong>. A warming at the surface (high mass) contributes far more to the planetary energy stock than the same warming in the thin stratosphere.</p>
+                    </div>
+
+                    <div class="bg-white/60 p-4 rounded-lg border border-blue-300">
+                        <h4 class="font-bold mb-1">C. Jensen's Inequality: Averaging Fluxes</h4>
+                        <p>Because $\sigma T^4$ is non-linear, the global average of $T^4$ is <strong>not</strong> the same as the global average of $T$ raised to the fourth power. To conserve energy, we must average fluxes first:</p>
+                        <div class="text-center italic my-2">
+                            $T_{eff} = \left[ \overline{T(\phi)^4} \right]^{1/4} \neq \overline{T(\phi)}$
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="thinking-point">
+                <h3 class="font-bold text-blue-800 mb-2">💡 Thinking Point 2: Analytical Profiles</h3>
+                <p class="text-blue-900 mb-4 text-sm">
+                    Modelers approximate the latitudinal temperature drop as: <strong>$T(\phi) = T_{eq} - \Delta T \sin^n(\phi)$</strong>.
+                </p>
+                
+                <div class="space-y-4 text-blue-900 text-sm bg-white p-5 rounded border border-slate-200 shadow-sm">
+                    <p class="font-bold uppercase text-xs tracking-widest text-slate-400">Interpreting Profile Shapes</p>
+                    <ul class="space-y-3 text-slate-700">
+                        <li>
+                            <strong class="text-red-600 font-bold">n = 2 (Parabolic Profile):</strong> Suggests a smooth, gradual drop from equator to pole. It implies that heat transport begins moving energy away from the equator immediately and consistently.
+                        </li>
+                        <li>
+                            <strong class="text-emerald-600 font-bold">n = 6 (Broad Tropical Plateau):</strong> Maintains a near-constant equatorial temperature over a wide latitudinal band, followed by a sharp drop-off.
+                        </li>
+                        <li>
+                            <strong>Energy Transport Interpretation:</strong> These profiles are proxies for <strong>Meridional Energy Transport Efficiency</strong>. A larger $n$ indicates highly efficient "stirring" within the tropics (creating a plateau) but implies strong physical barriers to transport at higher latitudes.
+                        </li>
+                        <li class="p-3 bg-blue-50 rounded border border-blue-100 italic text-blue-800">
+                            <strong>Class Challenge:</strong> How would you decide if Earth's transport is efficient based on data? From what parts of the planet (latitudes or pressure levels) would you use data to check this, and what metric would you employ to categorize Earth's transport regime?
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Validation -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 border-l-4 border-blue-500 pl-4">4. Validation Case Studies</h2>
+            
+            <div class="challenge-box mb-6">
+                <h3 class="font-bold text-blue-800 mb-3 underline">A. The Satellite Sensor Campaign: Validating the 0D Framework</h3>
+                <p class="text-sm text-slate-800 mb-4">
+                    The primary goal is to validate the <strong>Top-of-Atmosphere (TOA)</strong> boundary. Since the solar and Earth spectra are distinct, we need three distinct sensors:
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+                    <div class="p-3 bg-white border border-blue-100 rounded">
+                        <p class="font-bold text-xs uppercase text-blue-600">Sensor 1: Incoming Solar</p>
+                        <p class="text-[10px]">Shortwave (< 4 &mu;m). Measures $L_*$ directly from the Sun.</p>
+                    </div>
+                    <div class="p-3 bg-white border border-blue-100 rounded">
+                        <p class="font-bold text-xs uppercase text-blue-600">Sensor 2: Reflected Solar</p>
+                        <p class="text-[10px]">Shortwave (< 4 &mu;m). Measures reflected flux to compute Albedo ($\alpha$).</p>
+                    </div>
+                    <div class="p-3 bg-white border border-blue-100 rounded">
+                        <p class="font-bold text-xs uppercase text-blue-600">Sensor 3: Emitted Infrared</p>
+                        <p class="text-[10px]">Longwave (> 4 &mu;m). Measures OLR (Outgoing Longwave Radiation).</p>
+                    </div>
+                </div>
+                
+                <p class="text-xs text-slate-600 italic">
+                    <strong>Imbalance detection:</strong> Once validated, these sensors reveal that Earth is currently trapping $\approx 3\text{ W/m}^2$. This "un-sustainable" energy storage is the core of global warming.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div class="p-4 bg-slate-50 border-t-4 border-emerald-400 rounded shadow-sm">
+                    <h4 class="font-bold text-slate-900 mb-1 text-sm">B. Ocean Heat Content: Independent Validation</h4>
+                    <p class="text-xs text-slate-600">
+                        Where does the trapped 3W/m² go? Over 90% enters the oceans. Monitoring <strong>Ocean Heat Content (OHC)</strong> serves as a terrestrial, independent validation of our satellite measurements.
+                    </p>
+                </div>
+                
+                <div class="p-4 bg-slate-50 border-t-4 border-emerald-400 rounded shadow-sm">
+                    <h4 class="font-bold text-slate-900 mb-1 text-sm">C. RRTMG & Vertical Structure</h4>
+                    <p class="text-xs text-slate-600">
+                        Our model predicts $T \approx 255\text{K}$. Using <strong>RRTMG</strong> (available in <a href="https://climt.readthedocs.io/" class="text-blue-600 hover:underline">climt</a>) allows us to locate the <strong>Effective Radiating Level</strong> in the vertical.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Sensitivity -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 border-b-2 border-slate-100 pb-2">5. Radiative Forcing vs. Climate Feedback</h2>
+            
+            <div class="bg-blue-50 p-6 rounded-lg border border-blue-200 mb-8 text-sm">
+                <h3 class="font-bold text-blue-900 mb-4 uppercase tracking-widest text-xs">Deriving the Planck Sensitivity</h3>
+                <div class="space-y-4 text-blue-900">
+                    <p>To find how temperature responds to a change in albedo, we differentiate our equilibrium equation with respect to $\alpha$:</p>
+                    <p class="font-mono text-center">$$\frac{d}{d\alpha}(\sigma T^4) = \frac{d}{d\alpha} \left[ \frac{L_*}{4}(1 - \alpha) \right]$$</p>
+                    <p>Using the power rule on the left and evaluating the derivative on the right:</p>
+                    <p class="font-mono text-center">$$4\sigma T^3 \frac{dT}{d\alpha} = -\frac{L_*}{4}$$</p>
+                    <p>Solving for $\frac{dT}{d\alpha}$ gives us the <strong>Base Planck Sensitivity ($\lambda_0$)</strong>:</p>
+                    <div class="bg-white p-4 rounded shadow-sm text-center">
+                        <p class="text-xl font-bold">$$\lambda_0 = \frac{dT}{d\alpha} = - \frac{L_*}{16 \sigma T^3}$$</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 text-white p-8 rounded-lg mb-8 shadow-lg">
+                <div class="flex flex-col items-center text-center">
+                    <span class="component-label text-blue-400">Radiative Forcing ($\Delta F$)</span>
+                    <div class="text-2xl font-bold mb-1">$- \frac{L_*}{4} \Delta \alpha$</div>
+                    <div class="w-48 h-px bg-slate-500 my-2 text-slate-400">"The Push" (forcing out of equilibrium)</div>
+                    <div class="text-2xl font-bold mb-1">$4\sigma T^3 \Delta T$</div>
+                    <span class="component-label text-red-400">Planck Response / Feedback</span>
+                    <div class="mt-6 text-xl">Balance: $\Delta F = 4\sigma T^3 \Delta T$</div>
+                </div>
+            </div>
+            
+            <div class="space-y-4 text-slate-700 text-sm">
+                <h3 class="font-bold text-slate-900 uppercase tracking-tight">The "Restoring Force" of $T^3$</h3>
+                <ul class="list-disc list-inside space-y-3">
+                    <li>
+                        <strong>Cold Planets are Fragile:</strong> Because $T^3$ is in the denominator, sensitivity goes to infinity as $T \to 0$. A cold "Snowball Earth" is extremely sensitive to tiny albedo shifts.
+                    </li>
+                    <li>
+                        <strong>The High-Temp Buffer:</strong> Hot planets radiate aggressively. If you add forcing to a hot planet, it only needs to warm a tiny bit to find equilibrium again because its "restoring force" ($4\sigma T^3$) is so large.
+                    </li>
+                    <li>
+                        <strong>Planck Feedback:</strong> This is the universe's fundamental stabilizing mechanism. It is a negative feedback that pulls the system back toward balance.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 6: State-Dependent Albedo -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 border-l-4 border-blue-500 pl-4">6. The Ice-Albedo Feedback</h2>
+            <p class="mb-4 text-slate-700">In nature, albedo ($\alpha$) is not an external parameter but a <strong>function of the state variable $T$</strong>. Melting ice reduces albedo, absorbing more energy—a classic positive feedback.</p>
+
+            <div class="math-highlight text-center mb-6 text-sm">
+                $$ \alpha(T) = \alpha_{ocean} + (\alpha_{ice} - \alpha_{ocean}) \left[ \frac{T_o - T}{T_o - T_i} \right]^2 \quad \text{for } T_i < T < T_o $$
+            </div>
+
+            <div class="bg-blue-50 p-6 rounded-lg border border-blue-200 mb-8 text-sm">
+                <h3 class="font-bold text-blue-900 mb-4 uppercase tracking-widest text-xs">Full Derivation of Modified Sensitivity</h3>
+                <div class="space-y-4 text-blue-900">
+                    <p>We start by introducing a small external radiative forcing $\Delta F$ to the equilibrium balance:</p>
+                    <p class="font-mono text-center">$$\sigma T^4 = \frac{L_*}{4} (1 - \alpha(T)) + \Delta F$$</p>
+                    
+                    <p>Differentiating both sides with respect to $T$ to see how the system responds to this "push":</p>
+                    <p class="font-mono text-center">$$4\sigma T^3 \Delta T = -\frac{L_*}{4} \left( \frac{d\alpha}{dT} \right) \Delta T + \Delta F$$</p>
+                    
+                    <p>Let $\gamma(T) = \frac{d\alpha}{dT}$. Grouping $\Delta T$ terms to solve for sensitivity $\lambda = \Delta T / \Delta F$:</p>
+                    <p class="font-mono text-center">$$\lambda = \frac{1}{4\sigma T^3 + \frac{L_*}{4} \gamma(T)}$$</p>
+                    
+                    <p>To relate this to the <strong>Base Planck Sensitivity ($\lambda_0 = 1/4\sigma T^3$)</strong>, we factor $4\sigma T^3$ out of the denominator:</p>
+                    <p class="font-mono text-center">$$\lambda = \frac{\lambda_0}{1 + \lambda_0 \left( \frac{L_*}{4} \gamma(T) \right)}$$</p>
+                    
+                    <p>Finally, by defining the <strong>Feedback Gain Factor $g(T) = -\lambda_0 \frac{L_*}{4} \gamma(T)$</strong>, we obtain the universal feedback form:</p>
+                    <div class="bg-white p-4 rounded shadow-sm text-center">
+                        <p class="text-xl font-bold">$$\lambda = \frac{\lambda_0}{1 - g(T)}$$</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="space-y-4 text-slate-700 text-sm">
+                <h3 class="font-bold text-slate-900 uppercase tracking-tight">Physical Implications</h3>
+                <ul class="list-disc list-inside space-y-3">
+                    <li><strong>Amplification:</strong> Since $\gamma(T)$ is negative (albedo drops as $T$ rises), the gain $g(T)$ is positive. This makes $\lambda > \lambda_0$, meaning the ice-albedo effect amplifies any initial forcing.</li>
+                    <li><strong>Tipping Points:</strong> If $g(T) \to 1$, the denominator approaches zero and sensitivity approaches infinity. This indicates an unstable state where the planet may "runaway" to a new equilibrium.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 7: Formal Feedback Framework -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 border-l-4 border-blue-500 pl-4">7. Multi-Process Feedback Analysis</h2>
+            <p class="mb-4 text-slate-700">The climate system is a web of interacting processes. To understand the total sensitivity of the planet, we expand our framework to include multiple independent feedbacks.</p>
+
+            <div class="challenge-box mb-6">
+                <h3 class="font-bold text-emerald-800 mb-2 underline">The Water Vapor Feedback</h3>
+                <p class="text-emerald-900 text-sm">
+                    As established by the <strong>Clausius-Clapeyron relation</strong>, a warmer atmosphere holds more water vapor. Since water vapor is a potent greenhouse gas, it reduces the efficiency of the planet's cooling (decreases $OLR$).
+                </p>
+                <div class="mt-4 p-4 bg-white rounded border border-emerald-100 text-sm">
+                    <strong>The Physics:</strong> Warming $\to$ Increased Evaporation/Capacity $\to$ Higher Specific Humidity $\to$ Increased Greenhouse Effect $\to$ Reduced $OLR$ $\to$ More Warming.
+                </div>
+            </div>
+
+            <div class="space-y-6 text-slate-700 text-sm">
+                <h3 class="font-bold text-slate-900 uppercase tracking-tight">Generalized Feedback Equation</h3>
+                <p>When multiple processes (Ice-Albedo, Water Vapor, Clouds, Lapse Rate) all respond to temperature, their individual <strong>Gains ($g_i$)</strong> are additive in the denominator. The total climate sensitivity $\lambda_{total}$ becomes:</p>
+                
+                <div class="math-highlight text-center mb-6">
+                    <p class="text-xl font-bold">$$\lambda_{total} = \frac{\lambda_0}{1 - (g_{ice} + g_{wv} + g_{clouds} + ...)}$$</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                        <h4 class="font-bold text-slate-900 mb-2">Linear Additivity</h4>
+                        <p>This formal framework allows us to study feedbacks in isolation and then sum their effects. It demonstrates why the system is so sensitive to small errors in measuring individual processes: if the sum of gains approaches 1, the planet enters a <strong>Runaway State</strong>.</p>
+                    </div>
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                        <h4 class="font-bold text-slate-900 mb-2">Stability Criterion</h4>
+                        <p>A climate is stable only if $\sum g_i < 1$. On Earth, the Planck feedback ($g_{planck} = 0$) provides the fundamental restoring force, but positive gains from vapor and ice significantly amplify our sensitivity to forcing ($\Delta F$).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Applications -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 border-l-4 border-blue-500 pl-4">8. Real-Life Applications</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                    <h4 class="font-bold text-slate-900 mb-1 underline">Exoplanet Habitability</h4>
+                    <p class="text-slate-600">The feedback sum $\sum g_i$ determines if an exoplanet can maintain liquid water or if it is doomed to a runaway greenhouse (Venus) or runaway glaciation.</p>
+                </div>
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                    <h4 class="font-bold text-slate-900 mb-1 underline text-red-700">Faint Young Sun Paradox</h4>
+                    <p class="text-slate-600">How did the early Earth stay warm when the Sun was 30% dimmer? Higher greenhouse forcing ($\Delta F$) and strong positive feedbacks ($g_{wv}$) were likely required.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
