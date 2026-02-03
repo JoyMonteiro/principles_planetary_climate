@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Notes: The Shell Model of Climate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    
+    <!-- MathJax Configuration: explicit support for single dollar signs -->
+    <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        .math-display { overflow-x: auto; overflow-y: hidden; }
+        pre { background-color: #f4f4f5; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed">
+
+    <!-- Header -->
+    <header class="bg-blue-900 text-white py-12">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h1 class="text-4xl font-bold mb-4">The Shell Model of Climate</h1>
+            <p class="text-xl text-blue-200">From Opaque Shells to the Atmospheric Window</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 max-w-4xl py-12">
+
+        <!-- Introduction -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b pb-2">1. Introduction</h2>
+            <p class="mb-4">
+                To understand how the atmosphere warms the surface, we will build a "Shell Model" in three stages. 
+                We begin with a shell that blocks all radiation, move to an "Ideal Greenhouse" that lets sunlight in but traps heat, 
+                and conclude with the "Grey Shell" which includes an atmospheric window.
+            </p>
+        </section>
+
+        <!-- Key Concepts Definitions -->
+        <section class="bg-blue-50 p-8 rounded-lg border-l-4 border-blue-600 mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6">2. Key Concepts in Climate Physics</h2>
+            <div class="grid gap-6 md:grid-cols-2">
+                <div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">Radiating Temperature (\(T_e\))</h3>
+                    <p class="text-sm text-gray-700">
+                        Also known as the "effective temperature." This is the temperature a planet appears to have when viewed from space. 
+                        It is determined solely by the balance with incoming solar radiation: \(\sigma T_e^4 = S_{net}\).
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">Radiating Height (\(z_{rad}\))</h3>
+                    <p class="text-sm text-gray-700">
+                        The effective altitude from which the planet radiates energy to space. In an atmosphere where temperature decreases with height (lapse rate), 
+                        a higher \(z_{rad}\) implies a colder radiating surface.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">Back Radiation</h3>
+                    <p class="text-sm text-gray-700">
+                        Infrared radiation emitted by the atmosphere <em>downward</em> toward the surface. This energy flux adds to solar heating, 
+                        raising the surface temperature above the radiating temperature.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">Atmospheric Window</h3>
+                    <p class="text-sm text-gray-700">
+                        Specific parts of the electromagnetic spectrum (or a fraction of total energy) where the atmosphere is transparent 
+                        to surface radiation, allowing heat to escape directly to space without being absorbed.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scenario 1: The Opaque Black Shell -->
+        <section class="bg-white p-8 rounded-lg shadow-sm border border-gray-200 mb-12">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Scenario 1: The Opaque Black Shell</h2>
+                <span class="bg-gray-200 text-gray-700 text-sm font-semibold px-3 py-1 rounded-full">No Greenhouse Effect</span>
+            </div>
+            
+            <p class="mb-6">
+                Imagine a shell that acts as a perfect blackbody for <strong>all</strong> radiation. It absorbs all incoming sunlight (\(S_{net}\)) 
+                before it reaches the surface, and absorbs all radiation coming up from the surface. This is analogous to a thick dust cloud 
+                or a roof built over the planet.
+            </p>
+
+            <h3 class="text-lg font-semibold text-blue-900 mb-2">Energy Balance Equations</h3>
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-6">
+                <div class="bg-gray-50 p-4 border-l-4 border-gray-400">
+                    <p class="font-bold text-sm mb-1">Top of Atmosphere (TOA)</p>
+                    <p class="text-sm text-gray-600 mb-2">Outgoing = Incoming</p>
+                    <p>$$ \sigma T_a^4 = S_{net} $$</p>
+                </div>
+                <div class="bg-gray-50 p-4 border-l-4 border-gray-400">
+                    <p class="font-bold text-sm mb-1">Shell Balance</p>
+                    <p class="text-sm text-gray-600 mb-2">Emission = Absorption</p>
+                    <p>$$ 2\sigma T_a^4 = S_{net} + \sigma T_s^4 $$</p>
+                </div>
+                <div class="bg-gray-50 p-4 border-l-4 border-gray-400">
+                    <p class="font-bold text-sm mb-1">Surface Balance</p>
+                    <p class="text-sm text-gray-600 mb-2">Emission = Absorption</p>
+                    <p>$$ \sigma T_s^4 = \sigma T_a^4 $$</p>
+                </div>
+            </div>
+
+            <div class="bg-gray-100 p-5 rounded-md">
+                <h4 class="font-bold text-gray-800 mb-2">Application of Concepts</h4>
+                <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1">
+                    <li><strong>Radiating Temperature:</strong> \(T_e = T_a\). The planet radiates to space from the shell.</li>
+                    <li><strong>Radiating Height:</strong> The height of the shell.</li>
+                    <li><strong>Back Radiation:</strong> Present (\(\sigma T_a^4\)), but it merely compensates for the sunlight blocked by the shell.</li>
+                    <li><strong>Atmospheric Window:</strong> Completely closed (Opaque).</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Scenario 2: The Ideal Greenhouse -->
+        <section class="bg-white p-8 rounded-lg shadow-sm border border-gray-200 mb-12">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-green-700">Scenario 2: The Ideal Greenhouse</h2>
+                <span class="bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">Maximum Warming</span>
+            </div>
+            
+            <p class="mb-6">
+                Now we make the shell <strong>transparent to Shortwave (Solar)</strong> radiation but kept it <strong>Black (Opaque) to Longwave (Terrestrial)</strong> radiation. 
+                Sunlight passes through to heat the surface, but the surface heat is trapped.
+            </p>
+
+            <h3 class="text-lg font-semibold text-blue-900 mb-2">Energy Balance Equations</h3>
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-6">
+                <div class="bg-blue-50 p-4 border-l-4 border-blue-500">
+                    <p class="font-bold text-sm mb-1">Top of Atmosphere (TOA)</p>
+                    <p class="text-sm text-gray-600 mb-2">Outgoing = Incoming</p>
+                    <p>$$ \sigma T_a^4 = S_{net} $$</p>
+                </div>
+                <div class="bg-blue-50 p-4 border-l-4 border-blue-500">
+                    <p class="font-bold text-sm mb-1">Shell Balance</p>
+                    <p class="text-sm text-gray-600 mb-2">Emission = Absorption</p>
+                    <p>$$ 2\sigma T_a^4 = \sigma T_s^4 $$</p>
+                </div>
+                <div class="bg-blue-50 p-4 border-l-4 border-blue-500">
+                    <p class="font-bold text-sm mb-1">Surface Balance</p>
+                    <p class="text-sm text-gray-600 mb-2">Emission = Solar + Sky</p>
+                    <p>$$ \sigma T_s^4 = S_{net} + \sigma T_a^4 $$</p>
+                </div>
+            </div>
+
+            <div class="bg-green-50 p-5 rounded-md border border-green-100">
+                <h4 class="font-bold text-green-900 mb-2">Application of Concepts</h4>
+                <ul class="list-disc pl-5 text-sm text-green-800 space-y-1">
+                    <li><strong>Radiating Temperature:</strong> \(T_e = T_a\). The planet still radiates to space from the shell.</li>
+                    <li><strong>Radiating Height:</strong> The height of the shell. Because the shell is colder than the surface (and \(T_a = T_e\)), the surface must be warmer than \(T_e\) to maintain balance.</li>
+                    <li><strong>Back Radiation:</strong> The driver of warming. The surface receives \(S_{net}\) (Solar) PLUS \(\sigma T_a^4\) (Back Radiation).</li>
+                    <li><strong>Atmospheric Window:</strong> Completely closed.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Scenario 3: The Grey Shell (General Case) -->
+        <section class="bg-white p-8 rounded-lg shadow-sm border border-gray-200 mb-12">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-blue-900">Scenario 3: The Grey Shell</h2>
+                <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">Realistic Case</span>
+            </div>
+
+            <p class="mb-4">
+                Finally, we consider the general case. The shell is transparent to Solar radiation, but imperfectly opaque to Longwave radiation. 
+                We introduce <strong>Emissivity (\(\epsilon\))</strong>. By Kirchhoff's Law, Absorptivity \(\alpha = \epsilon\).
+            </p>
+            <p class="mb-6">
+                This creates an "Atmospheric Window" where a fraction \((1-\epsilon)\) of surface radiation escapes directly to space.
+            </p>
+
+            <h3 class="text-lg font-semibold text-blue-900 mb-2">Energy Balance Equations</h3>
+            <div class="space-y-4 mb-6">
+                <!-- Step A -->
+                <div class="bg-indigo-50 p-4 border-l-4 border-indigo-500">
+                    <h4 class="font-bold text-sm text-indigo-900 mb-2">Step A: Shell Balance</h4>
+                    <p class="text-sm text-gray-700 mb-2">
+                        The shell absorbs fraction \(\epsilon\) of upwelling surface radiation and emits \(\epsilon\) both ways.
+                    </p>
+                    <p class="text-center font-bold">$$ \epsilon \sigma T_s^4 = 2 \epsilon \sigma T_a^4 $$</p>
+                    <p class="text-center text-sm mt-2 text-gray-600">Dividing by \(\epsilon\) gives: <strong>\( T_s = 2^{1/4} T_a \)</strong></p>
+                    <p class="text-xs text-gray-500 mt-1 italic text-center">Note: The temp ratio remains fixed regardless of \(\epsilon\) (Kirchhoff's Law).</p>
+                </div>
+
+                <!-- Step B -->
+                <div class="bg-indigo-50 p-4 border-l-4 border-indigo-500">
+                    <h4 class="font-bold text-sm text-indigo-900 mb-2">Step B: Top of Atmosphere (TOA)</h4>
+                    <p class="text-sm text-gray-700 mb-2">
+                        Incoming solar balances Atmospheric Emission + Window Leakage.
+                    </p>
+                    <p class="text-center font-bold">$$ S_{net} = \epsilon \sigma T_a^4 + (1 - \epsilon) \sigma T_s^4 $$</p>
+                </div>
+            </div>
+
+            <div class="bg-indigo-50 p-5 rounded-md border border-indigo-100 mb-6">
+                <h4 class="font-bold text-indigo-900 mb-2">Application of Concepts</h4>
+                <ul class="list-disc pl-5 text-sm text-indigo-800 space-y-1">
+                    <li><strong>Radiating Temperature:</strong> \(T_e\) is a weighted average. The planet radiates to space partly from the cold shell (\(T_a\)) and partly from the warm surface (\(T_s\)).</li>
+                    <li><strong>Radiating Height:</strong> The effective radiating height is the <strong>weighted average</strong> between the surface (height 0, where the window is open) and the atmosphere (height \(z\), where it is opaque). This weighting is proportional to the width of the window relative to the total bandwidth of outgoing radiation.</li>
+                    <li><strong>Back Radiation:</strong> \(\epsilon \sigma T_a^4\). It is reduced compared to the ideal greenhouse because the shell is "leaky" (lower emissivity).</li>
+                    <li><strong>Atmospheric Window:</strong> Open. The term \((1-\epsilon)\) represents the fraction of energy escaping directly to space.</li>
+                </ul>
+            </div>
+
+            <h3 class="text-lg font-semibold text-blue-900 mb-4">Final Derivation</h3>
+            <div class="prose max-w-none text-gray-700">
+                <p>Substituting \( \sigma T_a^4 = \frac{1}{2} \sigma T_s^4 \) into the TOA equation:</p>
+                <p class="text-center my-4">$$ S_{net} = \epsilon \left( \frac{1}{2} \sigma T_s^4 \right) + (1 - \epsilon) \sigma T_s^4 $$</p>
+                <p>Factor out \( \sigma T_s^4 \):</p>
+                <p class="text-center my-4">$$ S_{net} = \sigma T_s^4 \left[ \frac{\epsilon}{2} + 1 - \epsilon \right] = \sigma T_s^4 \left[ \frac{2 - \epsilon}{2} \right] $$</p>
+            </div>
+
+            <!-- Result Box -->
+            <div class="mt-8 bg-blue-900 text-white p-6 rounded-lg text-center shadow-lg">
+                <h3 class="text-lg font-bold mb-2 uppercase tracking-wide opacity-80">Final Solution (Grey Shell)</h3>
+                <p class="text-2xl md:text-3xl font-serif">
+                    $$ T_s = \left( \frac{2 S_{net}}{\sigma (2 - \epsilon)} \right)^{1/4} $$
+                </p>
+                <p class="mt-4 text-sm text-blue-200">
+                    As \(\epsilon \to 1\), we recover Scenario 2 (Ideal Greenhouse).<br>
+                    As \(\epsilon \to 0\), we recover the Naked Planet.
+                </p>
+            </div>
+        </section>
+
+        <!-- Applications Section -->
+        <section class="mb-12 border-t pt-10">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">4. Real-World Applications & Implications</h2>
+            
+            <div class="grid gap-6 md:grid-cols-2">
+                <!-- Satellite Sensors -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-xl font-bold text-blue-800 mb-3">Satellite Sensor Design</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed mb-4">
+                        Understanding the "Atmospheric Window" is critical for remote sensing. Satellites use specific spectral bands to see different layers of the Earth system:
+                    </p>
+                    <ul class="list-disc pl-5 text-sm text-gray-600 space-y-1">
+                        <li><strong>Window Channels (8-12 \(\mu m\)):</strong> Sensors tuned to the atmospheric window "see" through the atmosphere down to the surface, allowing them to measure Land Surface Temperature (LST) and Ocean Surface Temperature.</li>
+                        <li><strong>Absorption Bands (e.g., \(CO_2\)):</strong> Sensors tuned to opaque bands (where \(\epsilon \approx 1\)) measure the temperature of the atmosphere itself at the radiating height, used for weather profiling.</li>
+                    </ul>
+                </div>
+
+                <!-- Planetary Habitability -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-xl font-bold text-green-800 mb-3">Planetary Habitability</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed mb-4">
+                        The balance between the greenhouse effect and the atmospheric window is a key determinant of habitability:
+                    </p>
+                    <ul class="list-disc pl-5 text-sm text-gray-600 space-y-1">
+                        <li><strong>Earth:</strong> The window prevents "runaway" heating by allowing excess heat to escape, while back radiation keeps the surface warm enough for liquid water.</li>
+                        <li><strong>Venus:</strong> A "closed window" scenario. The extremely thick atmosphere is opaque across almost all IR bands, leading to a runaway greenhouse effect and surface temperatures over 450°C.</li>
+                    </ul>
+                </div>
+
+                <!-- Radiative Cooling -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-xl font-bold text-purple-800 mb-3">Passive Radiative Cooling</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">
+                        Engineers use the atmospheric window for cooling buildings without electricity. "Radiative cooling paints" are designed to have extremely high emissivity specifically in the 8-13 \(\mu m\) window. This allows surfaces to dump heat directly into cold outer space, achieving temperatures significantly lower than the ambient air, even under direct sunlight.
+                    </p>
+                </div>
+
+                <!-- Frost Forecasting -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-xl font-bold text-indigo-800 mb-3">Frost Forecasting</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">
+                        Farmers use back radiation concepts to predict frost. On cloudy nights (Scenario 2ish), clouds act as a shell with high emissivity, providing strong back radiation that keeps the ground warm. On clear nights (Scenario 3 with low \(\epsilon\)), the window is wide open, back radiation is low, and the ground cools rapidly, leading to frost risk even if air temperature is slightly above freezing.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
