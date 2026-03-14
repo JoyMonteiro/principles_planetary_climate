@@ -15,4 +15,5 @@ view them as and when they are uploaded.
 * Lecture Note 3: [Energy balance modelling](./Energybalance.html)
 * Lecture Note 4: [A deeper look at the zero dimensional model](./0d_model.html)
 * Lecture Note 5: [The Shell Model](./shell_model.html)
+* Lecture Note 6: [Transition to a continuous atmosphere](./radiative_transfer.html)
 
