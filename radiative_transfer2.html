@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture: Radiative Heating and Equilibrium</title>
+    
+    <!-- MathJax for rendering LaTeX equations -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --heading-color: #111111;
+            --accent-color: #0366d6;
+            --border-color: #eaecef;
+            --code-bg: #f6f8fa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        main {
+            max-width: 850px;
+            width: 100%;
+            padding: 2rem 2rem 4rem 2rem;
+            box-sizing: border-box;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--heading-color);
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+
+        h1 {
+            font-size: 2.25em;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.3em;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.3em;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            font-size: 1.25em;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 16px;
+        }
+
+        ul, ol {
+            margin-top: 0;
+            margin-bottom: 16px;
+            padding-left: 2em;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        strong {
+            font-weight: 600;
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        .math-display {
+            overflow-x: auto;
+            display: block;
+            margin: 1.5em 0;
+            padding: 0.5em;
+            background-color: var(--code-bg);
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        /* Subtle responsive adjustments */
+        @media (max-width: 768px) {
+            main {
+                padding: 1rem 1rem 3rem 1rem;
+            }
+            h1 { font-size: 1.75em; }
+            h2 { font-size: 1.3em; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Lecture: Radiative Heating and Equilibrium</h1>
+
+        <h2>I. The Directional Nature of Radiation</h2>
+        <p>In our last lecture, we derived the Schwarzschild equation for a single ray of light traveling straight up or down. However, a planetary atmosphere emits and absorbs radiation in all possible directions. To understand the climate, we must account for the geometry of these light rays.</p>
+
+        <p>Let's formally define our coordinate system:</p>
+
+        <ol>
+            <li><strong>Vertical Coordinate:</strong> We use optical depth ($\tau_\lambda$), anchored at the surface ($\tau_\lambda = 0$) and increasing upward. Therefore, a vertical step is $d\tau_\lambda = k_\lambda \rho dz$.</li>
+            <li><strong>Zenith Angle ($\theta$):</strong> A ray of light traveling perfectly straight up has $\theta = 0^\circ$. A horizontal ray has $\theta = 90^\circ$. A ray traveling straight down has $\theta = 180^\circ$.</li>
+            <li><strong>The Direction Cosine ($\mu$):</strong> For mathematical convenience, we define $\mu = \cos\theta$. Upward rays have $1 \geq \mu > 0$. Downward rays have $-1 \leq \mu < 0$.</li>
+        </ol>
+
+        <p><strong>The Slant Path Assumption (Plane-Parallel Atmosphere):</strong><br>
+        We assume the atmosphere is "plane-parallel"—meaning its properties only change vertically, not horizontally (a great assumption for a thin planetary atmosphere).</p>
+
+        <p>If a photon is traveling at an angle $\theta$, the actual physical distance it travels through a layer ($ds$) is longer than the vertical thickness of that layer ($dz$). By simple geometry, $dz = ds \cos\theta$, which means:</p>
+
+        <div class="math-display">
+            $$ds = \frac{dz}{\mu}$$
+        </div>
+
+        <p>Substituting this geometric reality into our basic optical depth definition ($d\tau_\lambda = k_\lambda \rho dz$), the optical path length for a slanted ray becomes $d\tau_\lambda / \mu$.</p>
+
+        <p>This allows us to write the <strong>Directional Schwarzschild Equation</strong> for the specific Intensity ($I_\lambda$) traveling at an angle $\mu$:</p>
+
+        <div class="math-display">
+            $$\mu \frac{dI_\lambda(\tau, \mu)}{d\tau_\lambda} = B_\lambda(T) - I_\lambda(\tau, \mu)$$
+        </div>
+
+        <p><em>(Check the physics: For an upward ray ($\mu > 0$), if there is no emission ($B=0$), the right side is negative, meaning the intensity decreases as it travels upward to higher $\tau$. This is exactly what we expect from absorption!)</em></p>
+
+        <h2>II. Defining Hemispheric Flux</h2>
+        <p>A molecule of air doesn't care about just one ray of light; its temperature responds to the sum total of all the light hitting it from every possible angle.</p>
+
+        <p>We transition from directional <strong>Intensity ($I_\lambda$)</strong> to macroscopic <strong>Radiative Flux ($F_\lambda$)</strong> by integrating the intensity over a 3D hemisphere. Flux is the total energy crossing a flat horizontal surface per second (units: $W/m^2$).</p>
+
+        <p><strong>The Geometric Derivation of Flux ($\mu \, d\mu$):</strong><br>
+        To understand exactly how we calculate this, we need to build the integral using spherical geometry.</p>
+
+        <ol>
+            <li><strong>The Normal Projection ($\mu$):</strong> Intensity ($I_\lambda$) is defined as the energy crossing a surface <em>perpendicular</em> to the ray of light. However, we are calculating flux across a flat, <em>horizontal</em> atmospheric layer. A ray hitting this layer at a slanted angle $\theta$ spreads its energy over a larger area. The effective energy crossing the horizontal plane is reduced by a factor of $\cos\theta$. Since we defined $\mu = \cos\theta$, the projected intensity is $I_\lambda \mu$.</li>
+            
+            <li><strong>The Solid Angle ($d\Omega$):</strong> To capture all the light in the sky, we must integrate over the entire 3D hemisphere. In spherical coordinates, a tiny patch of the sky (a solid angle, $d\Omega$) is defined by the zenith angle ($\theta$) and the azimuth (compass) angle ($\phi$):
+                <div class="math-display">
+                    $$d\Omega = \sin\theta \, d\theta \, d\phi$$
+                </div>
+            </li>
+            
+            <li><strong>Changing Variables to $\mu$:</strong> Let's translate this solid angle into our $\mu$ coordinate. Since $\mu = \cos\theta$, basic calculus tells us the derivative is $d\mu = -\sin\theta \, d\theta$. Therefore, we can substitute $\sin\theta \, d\theta$ with $-d\mu$. Our solid angle element becomes:
+                <div class="math-display">
+                    $$d\Omega = -d\mu \, d\phi$$
+                </div>
+            </li>
+            
+            <li><strong>The Full Integral:</strong> The total upwelling flux ($F^+$) is the integral of the projected intensity over the entire upper hemisphere ($\theta$ goes from $0$ to $\pi/2$, and $\phi$ goes from $0$ to $2\pi$).
+                <div class="math-display">
+                    $$F_\lambda^+ = \int_{0}^{2\pi} \int_{\theta=0}^{\pi/2} (I_\lambda \cos\theta) (\sin\theta \, d\theta \, d\phi)$$
+                </div>
+                Substituting our $\mu$ variables (where $\theta=0 \implies \mu=1$, and $\theta=\pi/2 \implies \mu=0$):
+                <div class="math-display">
+                    $$F_\lambda^+ = \int_{0}^{2\pi} \int_{1}^{0} (I_\lambda \mu) (-d\mu) d\phi$$
+                </div>
+                Flipping the integration limits from $[1 \to 0]$ to $[0 \to 1]$ cleanly cancels the negative sign on $-d\mu$:
+                <div class="math-display">
+                    $$F_\lambda^+ = \int_{0}^{2\pi} \int_{0}^{1} I_\lambda \mu \, d\mu \, d\phi$$
+                </div>
+            </li>
+            
+            <li><strong>Azimuthal Symmetry:</strong> Finally, we assume the atmosphere is isotropic horizontally; it doesn't matter which compass direction you face (North, South, East, West). The intensity $I_\lambda$ does not depend on $\phi$. We can easily evaluate the azimuthal integral: $\int_0^{2\pi} d\phi = 2\pi$.</li>
+        </ol>
+
+        <p>This pulls a $2\pi$ out to the front, giving us our final mathematical definition for the <strong>Upwelling Flux ($F_\lambda^+$)</strong>:</p>
+
+        <div class="math-display">
+            $$F_\lambda^+ = 2\pi \int_0^1 I_\lambda(\mu) \mu d\mu$$
+        </div>
+
+        <p>Similarly, following the exact same procedure for the lower hemisphere, the <strong>Downwelling Flux ($F_\lambda^-$)</strong> (defined as a positive quantity moving downward) is:</p>
+
+        <div class="math-display">
+            $$F_\lambda^- = 2\pi \int_{-1}^0 I_\lambda(\mu) |\mu| d\mu$$
+        </div>
+
+        <h2>III. The Two-Stream Approximation and the Diffusivity Factor</h2>
+        <p>Solving the exact angle-dependent Schwarzschild equation for every possible $\mu$ is computationally exhausting. To simplify this, we introduce the cornerstone of modern climate modeling: the <strong>Two-Stream Approximation</strong>.</p>
+
+        <p><strong>The Hemispheric Isotropic Assumption:</strong><br>
+        We assume that the radiation traveling upward is perfectly uniform across the entire upper hemisphere ($I_\lambda^+$ is constant for all $\mu > 0$), and the radiation traveling downward is perfectly uniform across the lower hemisphere ($I_\lambda^-$ is constant for all $\mu < 0$).</p>
+
+        <p>Let's plug this assumption into our flux definition. Since $I_\lambda^+$ is constant, we pull it out of the integral:</p>
+
+        <div class="math-display">
+            $$F_\lambda^+ = 2\pi I_\lambda^+ \int_0^1 \mu d\mu = 2\pi I_\lambda^+ \left[ \frac{\mu^2}{2} \right]_0^1 = \pi I_\lambda^+$$
+        </div>
+
+        <p>So, for isotropic radiation, <strong>Flux is simply $\pi$ times the Intensity</strong>.</p>
+
+        <p><strong>Deriving the Differential Equations:</strong><br>
+        Now, we want a differential equation that directly describes how the macroscopic Flux changes, rather than the microscopic Intensity. We start systematically by writing down the Directional Schwarzschild Equation for an upward ray:</p>
+
+        <div class="math-display">
+            $$\mu \frac{dI_\lambda}{d\tau_\lambda} = B_\lambda(T) - I_\lambda$$
+        </div>
+
+        <p>To convert this intensity equation into a flux equation, we apply the integration operator for the upward hemisphere ($2\pi \int_0^1 \dots d\mu$) to both sides of the equation:</p>
+
+        <div class="math-display">
+            $$2\pi \int_0^1 \left( \mu \frac{dI_\lambda}{d\tau_\lambda} \right) d\mu = 2\pi \int_0^1 \left( B_\lambda(T) - I_\lambda \right) d\mu$$
+        </div>
+
+        <p>We can pull the derivative out on the left side, and split the integral on the right side:</p>
+
+        <div class="math-display">
+            $$\frac{d}{d\tau_\lambda} \left[ 2\pi \int_0^1 I_\lambda \mu d\mu \right] = 2\pi \int_0^1 B_\lambda(T) d\mu - 2\pi \int_0^1 I_\lambda d\mu$$
+        </div>
+
+        <p>Let's systematically evaluate each of these three terms:</p>
+
+        <ol>
+            <li><strong>The Left Side:</strong> By definition, the term in the brackets is the Upwelling Flux. So the left side is simply $\frac{dF_\lambda^+}{d\tau_\lambda}$.</li>
+            <li><strong>The First Term on the Right:</strong> The Planck emission function $B_\lambda(T)$ is isotropic (it does not depend on angle $\mu$). We can pull it out of the integral: $2\pi B_\lambda(T) \int_0^1 d\mu = 2\pi B_\lambda(T) [\mu]_0^1 = 2\pi B_\lambda(T)$.</li>
+            <li><strong>The Second Term on the Right:</strong> This is where we apply our Isotropic Assumption. We assume the upward intensity $I_\lambda^+$ is uniform across all upward angles, allowing us to pull it out of the integral: $2\pi I_\lambda^+ \int_0^1 d\mu = 2\pi I_\lambda^+$.<br>
+            But earlier we proved that for isotropic radiation, $F_\lambda^+ = \pi I_\lambda^+$, which means $I_\lambda^+ = F_\lambda^+ / \pi$. Substituting this in, the term becomes $2\pi (F_\lambda^+ / \pi) = 2F_\lambda^+$.</li>
+        </ol>
+
+        <p>Bringing all three evaluated terms back together, we arrive at the <strong>Two-Stream Equation for Upwelling Flux</strong>:</p>
+
+        <div class="math-display">
+            $$\frac{dF_\lambda^+}{d\tau_\lambda} = 2\pi B_\lambda(T) - 2F_\lambda^+ = 2 (\pi B_\lambda(T) - F_\lambda^+)$$
+        </div>
+
+        <p>Following the exact same integration procedure for the downward hemisphere (from $\mu = -1$ to $0$), we get the <strong>Two-Stream Equation for Downwelling Flux</strong>:</p>
+
+        <div class="math-display">
+            $$-\frac{dF_\lambda^-}{d\tau_\lambda} = 2 (\pi B_\lambda(T) - F_\lambda^-)$$
+        </div>
+
+        <p><em>(The negative sign on the left appears because $F^-$ travels opposite to the direction of increasing $\tau$.)</em></p>
+
+        <p><strong>The Physics of the Factor of 2 (The Diffusivity Approximation):</strong><br>
+        Where did that extra factor of "$2$" actually come from? This is famously known as the <strong>Diffusivity Factor</strong>, and it has a beautiful geometric interpretation (as detailed in texts like Pierrehumbert's <em>Principles of Planetary Climate</em>).</p>
+
+        <p>Recall from Section I that the optical depth for a photon on a slant path is $\tau_{slant} = \frac{\tau}{\cos\theta} = \frac{\tau}{\mu}$.</p>
+
+        <p>When we integrate over the hemisphere, we are averaging the absorption over all possible slant paths. A photon going straight up ($\mu=1$) experiences optical depth $\tau$. But photons traveling at shallow, slanted angles ($\mu \to 0$) experience infinitely long path lengths and massive absorption.</p>
+
+        <p>The mathematics we just performed proves that an entire hemisphere of diffuse radiation experiences the same absorption as a single, equivalent beam of light traveling at an angle where $\mu = 1/2$. Because $\cos(60^\circ) = 0.5$, this "average" beam travels at a $60^\circ$ angle.</p>
+
+        <p>At this representative angle, the effective slant path is exactly $\tau_{slant} = \frac{\tau}{0.5} = 2\tau$. This is why the equations for macroscopic flux act as if the atmospheric optical depth is twice as thick as it is for a perfectly vertical beam.</p>
+
+        <h2>IV. The Gray Gas Assumption and Net Flux</h2>
+        <p>We have one final simplification to make. Calculating these two-stream equations for millions of individual wavelengths ($\lambda$) is tedious.</p>
+
+        <p>To explore the bulk thermodynamics of the atmosphere, we make the <strong>Gray Gas Assumption</strong>: we assume the absorption cross-section ($k$) and therefore the optical depth ($\tau$) are constant across the entire infrared spectrum.</p>
+
+        <p>This allows us to integrate our equations over all wavelengths.</p>
+
+        <ul>
+            <li>The integral of spectral flux gives the total broadband flux: $\int F_\lambda d\lambda = F$</li>
+            <li>By the Stefan-Boltzmann law, the integral of the Planck function gives blackbody emission: $\int \pi B_\lambda d\lambda = \sigma T^4$</li>
+        </ul>
+
+        <p>Our complex spectral equations instantly simplify to the <strong>Broadband Two-Stream Equations</strong>:</p>
+
+        <div class="math-display">
+            $$\frac{dF^+}{d\tau} = 2 (\sigma T^4 - F^+)$$
+        </div>
+
+        <div class="math-display">
+            $$-\frac{dF^-}{d\tau} = 2 (\sigma T^4 - F^-)$$
+        </div>
+
+        <p><strong>The Net Flux ($F_{net}$):</strong><br>
+        To determine the actual, physical movement of energy across any altitude boundary, we define the <strong>Net Flux ($F_{net}$)</strong> as the difference between the upward and downward streams:</p>
+
+        <div class="math-display">
+            $$F_{net}(\tau) = F^+(\tau) - F^-(\tau)$$
+        </div>
+
+        <p>By convention, because the dominant planetary heat loss is upward to space, we define $F_{net}$ as positive in the upward direction.</p>
+
+        <ul>
+            <li>If $F_{net} > 0$, more energy is moving up than down.</li>
+            <li>If $F_{net} < 0$, more energy is moving down than up.</li>
+        </ul>
+
+        <h2>V. The Heating Rate: Divergence of Flux</h2>
+        <p>Now, we ask the critical thermodynamic question: <strong>How does the movement of this radiation actually change the temperature of the air?</strong></p>
+
+        <p>Let's draw a thin layer of atmosphere with area $A$, bounded by optical depth $\tau$ at the bottom and $\tau + \Delta \tau$ at the top.</p>
+
+        <ol>
+            <li><strong>Energy Entering:</strong> The net radiative energy entering the <em>bottom</em> of our layer per second is $F_{net}(\tau) \times A$.</li>
+            <li><strong>Energy Leaving:</strong> The net radiative energy leaving the <em>top</em> of our layer per second is $F_{net}(\tau + \Delta \tau) \times A$.</li>
+        </ol>
+
+        <p>If the flux leaving the top is greater than the flux entering the bottom, our layer is losing energy. The total energy accumulated inside the layer per second is the difference:</p>
+
+        <div class="math-display">
+            $$\text{Net Energy Gained} = A \left[ F_{net}(\tau) - F_{net}(\tau + \Delta \tau) \right]$$
+        </div>
+
+        <p>Using standard calculus, for a very thin optical layer $\Delta \tau$, the difference $[F_{net}(\tau + \Delta \tau) - F_{net}(\tau)]$ is exactly the derivative $\frac{\partial F_{net}}{\partial \tau} \Delta \tau$. Therefore:</p>
+
+        <div class="math-display">
+            $$\text{Net Energy Gained} = -A \frac{\partial F_{net}}{\partial \tau} \Delta \tau$$
+        </div>
+
+        <p><strong>Connecting Energy to Temperature:</strong><br>
+        From basic thermodynamics, the energy required to change the temperature ($T$) of a mass ($m$) is given by $E = m c_p \Delta T$, where $c_p$ is the specific heat capacity of air at constant pressure.</p>
+
+        <p>What is the physical mass of our optical layer? The mass is the volume multiplied by the local density ($m = \rho A \Delta z$). But recall that optical depth is defined as $d\tau = k \rho dz$. Therefore, the physical mass per unit area ($\rho \Delta z$) is exactly equal to $\Delta \tau / k$.</p>
+
+        <p>Substituting this, the mass of our layer is simply $m = A \frac{\Delta \tau}{k}$.</p>
+
+        <p>The rate of change of energy per second is therefore:</p>
+
+        <div class="math-display">
+            $$\text{Rate of Energy Change} = \left(A \frac{\Delta \tau}{k}\right) c_p \frac{\partial T}{\partial t}$$
+        </div>
+
+        <p><strong>The Heating Rate Equation:</strong><br>
+        Equating our thermodynamic temperature change with our net radiative energy gain:</p>
+
+        <div class="math-display">
+            $$\left(A \frac{\Delta \tau}{k}\right) c_p \frac{\partial T}{\partial t} = -A \frac{\partial F_{net}}{\partial \tau} \Delta \tau$$
+        </div>
+
+        <p>The Area ($A$) and the optical thickness ($\Delta \tau$) brilliantly cancel out! We are left with the fundamental equation for the <strong>Radiative Heating Rate</strong> entirely in $\tau$-space:</p>
+
+        <div class="math-display">
+            $$\frac{\partial T}{\partial t} = -\frac{k}{c_p} \frac{\partial F_{net}}{\partial \tau}$$
+        </div>
+
+        <p><em>Physical Intuition:</em> The term $\frac{\partial F_{net}}{\partial \tau}$ is the <strong>divergence</strong> of the flux.</p>
+
+        <ul>
+            <li>If the flux diverges (spreads out/increases as it goes up to higher $\tau$, $\frac{\partial F_{net}}{\partial \tau} > 0$), the layer is losing energy, and the heating rate is <strong>negative</strong> (it cools).</li>
+            <li>If the flux converges (decreases as it goes up, $\frac{\partial F_{net}}{\partial \tau} < 0$), the layer is trapping energy, and the heating rate is <strong>positive</strong> (it warms).</li>
+        </ul>
+
+        <p><em>(Pro-Tip for Climate Modeling: Because pressure decreases upwards ($dp = -\rho g dz$), we know $d\tau = -k dp / g$. By substituting this into our equation, we can rewrite the heating rate in pressure coordinates, which climate models heavily prefer: $\frac{\partial T}{\partial t} = \frac{g}{c_p} \frac{\partial F_{net}}{\partial p}$.)</em></p>
+
+        <h2>VI. Pure Radiative Equilibrium</h2>
+        <p>We have a mechanism for heating and cooling. But what happens if we leave this planetary atmosphere alone for a long time?</p>
+
+        <p>Eventually, the system will reach <strong>Radiative Equilibrium</strong>. By definition, equilibrium means the macroscopic state variables are no longer changing with time. Therefore, the temperature of every single layer in the atmosphere must become perfectly steady:</p>
+
+        <div class="math-display">
+            $$\frac{\partial T}{\partial t} = 0$$
+        </div>
+
+        <p>If the heating rate is zero everywhere, then our heating rate equation dictates that the divergence of the flux must also be zero everywhere:</p>
+
+        <div class="math-display">
+            $$-\frac{k}{c_p} \frac{\partial F_{net}}{\partial \tau} = 0 \implies \frac{\partial F_{net}}{\partial \tau} = 0$$
+        </div>
+
+        <p><strong>The Grand Implication of Equilibrium:</strong><br>
+        If the derivative of a function with respect to optical depth is zero, that function must be a constant. Therefore, in pure radiative equilibrium:</p>
+
+        <div class="math-display">
+            $$F_{net}(\tau) = \text{Constant}$$
+        </div>
+
+        <p>This is a profound realization. In a state of pure radiative equilibrium, the atmosphere does not <em>accumulate</em> or <em>deplete</em> net energy anywhere. It simply acts as a conduit. Exactly the same amount of net longwave energy passes through an optically thick layer in the lower troposphere as passes through a thin layer in the stratosphere.</p>
+
+        <h2>VII. Boundary Conditions: TOA and the Surface</h2>
+        <p>If the net flux is a constant everywhere in the vertical column, what is the exact value of that constant? To find out, we look at the boundaries of our system.</p>
+
+        <h3>1. The Top of Atmosphere (TOA) Boundary</h3>
+        <p>At the Top of the Atmosphere ($\tau = \tau_\infty$), there is no air above us, so there is no downwelling longwave radiation ($F^- = 0$). The net longwave flux is simply the upwelling radiation escaping to space ($F_{net}(\tau_\infty) = F^+(\tau_\infty)$).</p>
+
+        <p>For the entire planet to be in energy balance, the net longwave energy escaping to space must perfectly balance the shortwave solar energy absorbed by the planet. Using our familiar Zero-D energy balance:</p>
+
+        <div class="math-display">
+            $$F_{net}(\tau_\infty) = \frac{S}{4}(1-\alpha)$$
+        </div>
+
+        <p>Since $F_{net}$ is constant everywhere in radiative equilibrium, this immediately defines the flux for the entire atmospheric column:</p>
+
+        <div class="math-display">
+            $$F_{net}(\tau) = \frac{S}{4}(1-\alpha) \quad \text{for all } \tau$$
+        </div>
+
+        <h3>2. The Surface Boundary</h3>
+        <p>Because the constant flux holds everywhere, it must also hold at the very bottom of the atmosphere ($\tau=0$). Therefore:</p>
+
+        <div class="math-display">
+            $$F_{net}(0) = \frac{S}{4}(1-\alpha)$$
+        </div>
+
+        <p>But let's unpack what $F_{net}(0)$ actually means. The net flux at the surface is the difference between the blackbody emission of the solid ground going up, and the greenhouse back-radiation coming down from the atmosphere:</p>
+
+        <div class="math-display">
+            $$F^+(0) - F^-(0) = \frac{S}{4}(1-\alpha)$$
+        </div>
+
+        <div class="math-display">
+            $$\sigma T_{surface}^4 - F^-(0) = \frac{S}{4}(1-\alpha)$$
+        </div>
+
+        <p><strong>The Setup for Convection:</strong><br>
+        Notice the trap we have mathematically walked into. To maintain pure radiative equilibrium, the surface must emit enough radiation to balance <em>both</em> the incoming solar radiation <em>and</em> the downwelling back-radiation from the atmosphere.</p>
+
+        <p>Because the atmosphere is highly opaque to infrared (large total optical depth $\tau_\infty$), $F^-(0)$ is very large. This forces $\sigma T_{surface}^4$ to be massive. If you calculate the temperature profile of an atmosphere in <em>pure</em> radiative equilibrium, you find that the surface must be searingly hot—much hotter than the air sitting exactly at $\tau=0$ right above it.</p>
+
+        <p>This creates a massive, physically unstable temperature discontinuity between the ground and the lowest level of the atmosphere. In reality, a fluid cannot sustain this. The hot surface will violently heat the air immediately above it via conduction, causing that air to become buoyant and rise.</p>
+
+        <p>This is the exact physical motivation for why a pure Radiative Equilibrium climate is impossible on Earth, forcing us to move to a <strong>Radiative-Convective Equilibrium</strong> model, which will be the topic of our next major conceptual leap.</p>
+
+    </main>
+</body>
+</html>
