@@ -16,4 +16,5 @@ view them as and when they are uploaded.
 * Lecture Note 4: [A deeper look at the zero dimensional model](./0d_model.html)
 * Lecture Note 5: [The Shell Model](./shell_model.html)
 * Lecture Note 6: [Transition to a continuous atmosphere](./radiative_transfer.html)
-
+* Lecture Note 7: [Basics of Radiative Transfer](./radiative_transfer2.html)
+* Lecture Note 8: [Gray Gas radiative equilibrium](./gray_gas.html)
