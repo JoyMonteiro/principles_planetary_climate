@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Notes: Gray Radiative Equilibrium</title>
+    <!-- Importing Tailwind CSS with the Typography plugin for perfect article formatting -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['$$', '$$']]
+            },
+            chtml: {
+                scale: 1.05, /* Slightly scales up the math for better readability */
+                displayAlign: 'center'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+    <style>
+        /* Ensuring long math equations can scroll horizontally on small screens */
+        .math-display {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            padding: 0.5rem 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 py-8 px-4 sm:px-8">
+
+    <div class="max-w-4xl mx-auto bg-white p-8 sm:p-12 shadow-xl rounded-xl">
+        
+        <!-- The 'prose' class automatically handles all typography, list styling, and spacing -->
+        <article class="prose prose-slate prose-lg max-w-none">
+            
+            <h1>Lecture: Radiative Equilibrium in a Gray Atmosphere</h1>
+
+            <h2>1. Introduction: From Shell Models to the Continuum</h2>
+            <p>In previous lectures, we relied on discrete "shell" models to understand the greenhouse effect. While conceptually useful, planetary atmospheres are continuous fluids. To transition from a discrete shell model to a continuous vertical profile, we must integrate the radiative fluxes across the atmospheric column.</p>
+            <p>Our tool for this analytical step is the <strong>Gray Gas Approximation</strong>.</p>
+            <ul>
+                <li><strong>The "Gray" Assumption:</strong> We assume the absorption coefficient \(\kappa_\lambda\) is independent of wavelength \(\lambda\). While real gases have complex absorption bands, the gray gas model yields exact analytical solutions that expose the fundamental thermodynamic scaling of planetary climates.</li>
+                <li><strong>Coordinate System:</strong> We define optical depth \(\tau\) as measured <strong>upward from the surface</strong>.
+                    <ul>
+                        <li>\(\tau = 0\) is the <strong>surface boundary</strong>.</li>
+                        <li>\(\tau = \tau_{\infty}\) is the <strong>Top of the Atmosphere (TOA)</strong>.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>By treating radiation as a one-dimensional, two-stream problem (upwelling \(I^+\) and downwelling \(I^-\)), our governing differential equations become:</p>
+            
+            <div class="math-display">
+                $$
+                \frac{dI^+}{d\tau} = B(\tau) - I^+(\tau)
+                $$
+            </div>
+            <div class="math-display">
+                $$
+                \frac{dI^-}{d\tau} = I^-(\tau) - B(\tau)
+                $$
+            </div>
+            
+            <p>Where \(B(\tau) = \sigma T(\tau)^4\) is the local Planck emission. Moving upward (\(d\tau &gt; 0\)), the upwelling stream \(I^+\) is depleted by absorption (\(-I^+\)) and augmented by local thermal emission (\(+B\)). The signs are reversed for the downwelling stream because it propagates in the \(-d\tau\) direction.</p>
+
+            <h2>2. Integral Solutions and the Heating Rate</h2>
+            <p>To understand how an atmosphere approaches equilibrium, we must first define the local thermal forcing: the <strong>Radiative Heating Rate</strong> (\(\mathcal{H}\)). This is defined as the negative divergence of the net flux (\(F_{net} = I^+ - I^-\)).</p>
+            <p>Taking the derivative of \(F_{net}\) with respect to \(\tau\) and substituting our two-stream equations:</p>
+            
+            <div class="math-display">
+                $$
+                \mathcal{H}(\tau) = -\frac{dF_{net}}{d\tau} = -\left(\frac{dI^+}{d\tau} - \frac{dI^-}{d\tau}\right) = -(B - I^+ - I^- + B) = I^+(\tau) + I^-(\tau) - 2B(\tau)
+                $$
+            </div>
+            
+            <p>This equation has profound physical meaning. A local layer of atmosphere cools by emitting radiation both upward and downward (\(-2B\)). It heats by absorbing the ambient radiation field (\(I^+ + I^-\)).</p>
+
+            <h3>A. The Formal Integral Solutions</h3>
+            <p>To evaluate \(\mathcal{H}\), we solve the differential equations using integrating factors.</p>
+            <ol>
+                <li>
+                    <strong>Upwelling Stream</strong> (\(I^+\)):
+                    <div class="math-display">
+                        $$
+                        I^+(\tau) = I^+(0)e^{-\tau} + \int_0^\tau B(\tau') e^{-(\tau - \tau')} d\tau'
+                        $$
+                    </div>
+                    <p><em>Physical Meaning:</em> The upwelling flux at level \(\tau\) is the surface emission \(I^+(0)\) attenuated by the optical depth \(e^{-\tau}\), plus the cumulative emission of all atmospheric layers below \(\tau'\), attenuated by the intervening distance \((\tau - \tau')\).</p>
+                </li>
+                <li>
+                    <strong>Downwelling Stream</strong> (\(I^-\)):
+                    <p>Assuming space emits no infrared radiation (\(I^-(\tau_\infty) = 0\)):</p>
+                    <div class="math-display">
+                        $$
+                        I^-(\tau) = \int_\tau^{\tau_\infty} B(\tau') e^{-(\tau' - \tau)} d\tau'
+                        $$
+                    </div>
+                    <p><em>Physical Meaning:</em> The downwelling flux is strictly the integrated emission of the atmospheric layers <em>above</em> \(\tau\).</p>
+                </li>
+            </ol>
+
+            <h3>B. Two Limiting Regimes of Radiative Transfer (Detailed Derivations)</h3>
+            <p>Using these equations, we can rigorously derive the behavior of an atmosphere in two extreme physical limits.</p>
+
+            <p><strong>1. The Optically Thin Limit</strong> (\(\tau_\infty \ll 1\)):</p>
+            <p>In a highly tenuous atmosphere (e.g., modern Mars), the total optical depth is very small. We can apply a Taylor expansion to the exponential attenuation terms: \(e^{-x} \approx 1 - x\).</p>
+            <p>Let's evaluate the integrals assuming the atmosphere is roughly isothermal at temperature \(T\), meaning \(B(\tau') \approx B = \sigma T^4\).</p>
+            <p>For the upwelling stream, the integral domain \([0, \tau]\) is extremely small, so the integral evaluates to approximately \(B \cdot \tau\):</p>
+            <div class="math-display">
+                $$
+                I^+(\tau) \approx \sigma T_g^4 (1-\tau) + B\tau
+                $$
+            </div>
+            <p>For the downwelling stream, the integral over \([\tau, \tau_\infty]\) evaluates to:</p>
+            <div class="math-display">
+                $$
+                I^-(\tau) \approx B(\tau_\infty - \tau)
+                $$
+            </div>
+            <p>Now, substitute these approximations back into the heating rate equation \(\mathcal{H} = I^+ + I^- - 2B\):</p>
+            <div class="math-display">
+                $$
+                \mathcal{H}(\tau) \approx [\sigma T_g^4 (1-\tau) + B\tau] + [B(\tau_\infty - \tau)] - 2B
+                $$
+            </div>
+            <p>Grouping the \(B\) terms together:</p>
+            <div class="math-display">
+                $$
+                \mathcal{H}(\tau) \approx \sigma T_g^4 (1-\tau) + B(\tau + \tau_\infty - \tau - 2) = \sigma T_g^4 (1-\tau) + B(\tau_\infty - 2)
+                $$
+            </div>
+            <p>Because \(\tau_\infty \ll 1\), the term \((\tau_\infty - 2) \approx -2\). Thus, the heating rate simplifies to:</p>
+            <div class="math-display">
+                $$
+                \mathcal{H}(\tau) \approx \sigma T_g^4 (1-\tau) - 2\sigma T^4
+                $$
+            </div>
+            <p><em>Physical Result:</em> In the absolute thin limit (\(\tau \to 0\)), equilibrium (\(\mathcal{H}=0\)) requires \(2\sigma T^4 = \sigma T_g^4\), meaning the atmosphere's temperature is purely slaved to the ground: \(T \approx 0.84 T_g\). It is a non-local regime dominated entirely by boundary conditions.</p>
+
+            <p><strong>2. The Optically Thick / Diffusive Limit</strong> (\(\tau \gg 1\) and \(\tau_\infty - \tau \gg 1\)):</p>
+            <p>In a dense atmosphere (e.g., Venus), deep layers are entirely shielded from the boundaries. Pierrehumbert derives this limit rigorously using the integral solutions. Because the exponential term \(e^{-|\tau - \tau'|}\) decays extremely rapidly as photons move away from their source, a layer at \(\tau\) only "sees" radiation from its immediate surroundings (\(\tau' \approx \tau\)).</p>
+            <p>We can therefore approximate the emission source \(B(\tau')\) inside the integrals by performing a Taylor series expansion centered around \(\tau\):</p>
+            <div class="math-display">
+                $$
+                B(\tau') \approx B(\tau) + (\tau' - \tau)\frac{dB}{d\tau}
+                $$
+            </div>
+            <p>Substitute this into the integral for \(I^+(\tau)\). Since deep in the atmosphere the surface contribution \(e^{-\tau}\) is nearly zero, we drop it:</p>
+            <div class="math-display">
+                $$
+                I^+(\tau) \approx \int_0^\tau \left[ B(\tau) + (\tau' - \tau)\frac{dB}{d\tau} \right] e^{-(\tau - \tau')} d\tau'
+                $$
+            </div>
+            <p>Let \(x = \tau - \tau'\), which means \(dx = -d\tau'\). The integration limits change from \([0, \tau]\) to \([\tau, 0]\), but absorbing the negative sign from \(dx\) flips them back to \([0, \tau]\). Furthermore, because we are in an optically thick regime (\(\tau \gg 1\)), we can extend the upper bound of the integral to \(\infty\) without losing accuracy (the exponential makes distant contributions vanish anyway):</p>
+            <div class="math-display">
+                $$
+                I^+(\tau) \approx \int_0^\infty \left[ B(\tau) - x\frac{dB}{d\tau} \right] e^{-x} dx
+                $$
+            </div>
+            <p>Using standard exponential integrals (\(\int_0^\infty e^{-x} dx = 1\) and \(\int_0^\infty x e^{-x} dx = 1\)), this evaluates precisely to:</p>
+            <div class="math-display">
+                $$
+                I^+(\tau) \approx B(\tau) - \frac{dB}{d\tau}
+                $$
+            </div>
+            <p>Following a perfectly symmetric procedure for \(I^-(\tau)\) using the substitution \(x = \tau' - \tau\), we get:</p>
+            <div class="math-display">
+                $$
+                I^-(\tau) \approx B(\tau) + \frac{dB}{d\tau}
+                $$
+            </div>
+            <p>The net flux \(F_{net}\) in this deeply buried layer is therefore:</p>
+            <div class="math-display">
+                $$
+                F_{net} = I^+ - I^- = \left(B - \frac{dB}{d\tau}\right) - \left(B + \frac{dB}{d\tau}\right) = -2\frac{dB}{d\tau}
+                $$
+            </div>
+            <p><em>Physical Result:</em> In an optically thick medium, photons perform a random walk. Radiation becomes a purely local diffusive process, mathematically identical to Fourier's Law of heat conduction. The net flux is strictly proportional to the negative local gradient of the temperature profile (represented by the Planck function).</p>
+
+            <h2>3. The Condition for Radiative Equilibrium</h2>
+            <p>A climate is in pure <strong>Radiative Equilibrium</strong> when the heating rate is exactly zero at every vertical level. There is no net convergence or divergence of energy:</p>
+            <div class="math-display">
+                $$
+                \mathcal{H}(\tau) = 0 \implies \frac{dF_{net}}{d\tau} = 0 \implies F_{net} = \text{constant}
+                $$
+            </div>
+            <p>By definition of planetary energy balance, the constant net outgoing infrared flux at the TOA must equal the absorbed solar radiation:</p>
+            <div class="math-display">
+                $$
+                F_{net}(\tau_\infty) = \frac{S_0}{4}(1 - \alpha) = \sigma T_{e}^4
+                $$
+            </div>
+            <p>Where \(T_e\) is the planet's effective emission temperature. Since \(F_{net}\) is constant, \(F_{net}(\tau) = \sigma T_e^4\) everywhere.</p>
+
+            <h2>4. Analytical Derivation of the Temperature Profile</h2>
+            <p>We now solve for the exact equilibrium temperature profile \(T(\tau)\) using Pierrehumbert's "Sum and Difference" method.</p>
+
+            <h3>Step 1: The Difference Equation</h3>
+            <p>Subtract the two-stream equations:</p>
+            <div class="math-display">
+                $$
+                \frac{d}{d\tau}(I^+ - I^-) = (B - I^+) - (I^- - B) = 2B - (I^+ + I^-)
+                $$
+            </div>
+            <p>Because we are in equilibrium, \(\frac{d}{d\tau}(I^+ - I^-) = \frac{dF_{net}}{d\tau} = 0\). Therefore:</p>
+            <div class="math-display">
+                $$
+                B(\tau) = \frac{1}{2}(I^+ + I^-)
+                $$
+            </div>
+            <p><em>Result:</em> In radiative equilibrium, the local emission function perfectly averages the ambient upwelling and downwelling radiation streams.</p>
+
+            <h3>Step 2: The Sum Equation</h3>
+            <p>Add the two-stream equations:</p>
+            <div class="math-display">
+                $$
+                \frac{d}{d\tau}(I^+ + I^-) = (B - I^+) + (I^- - B) = -(I^+ - I^-) = -F_{net}
+                $$
+            </div>
+            <p>Since \(F_{net}\) is constant, we easily integrate this from \(\tau=0\):</p>
+            <div class="math-display">
+                $$
+                I^+ + I^- = -F_{net} \cdot \tau + C
+                $$
+            </div>
+
+            <h3>Step 3: Applying TOA Boundary Conditions</h3>
+            <p>To find the constant of integration \(C\), we evaluate at the Top of the Atmosphere (\(\tau = \tau_\infty\)).</p>
+            <p>We know two things at TOA:</p>
+            <ol>
+                <li>\(I^-(\tau_\infty) = 0\) (No IR from space).</li>
+                <li>\(F_{net} = I^+(\tau_\infty) - I^-(\tau_\infty) \implies I^+(\tau_\infty) = F_{net}\).</li>
+            </ol>
+            <p>Therefore, the sum at the TOA is simply: \(I^+(\tau_\infty) + I^-(\tau_\infty) = F_{net}\).</p>
+            <p>Plugging this into our integrated Sum Equation at \(\tau = \tau_\infty\):</p>
+            <div class="math-display">
+                $$
+                F_{net} = -F_{net}\tau_\infty + C \implies C = F_{net}(1 + \tau_\infty)
+                $$
+            </div>
+
+            <h3>Step 4: The Final Profile</h3>
+            <p>Substitute \(C\) back into the Sum Equation for any level \(\tau\):</p>
+            <div class="math-display">
+                $$
+                I^+(\tau) + I^-(\tau) = F_{net}(1 + \tau_\infty - \tau)
+                $$
+            </div>
+            <p>Recall from Step 1 that \(B(\tau) = \frac{1}{2}(I^+ + I^-)\). Therefore:</p>
+            <div class="math-display">
+                $$
+                B(\tau) = \frac{F_{net}}{2}(1 + \tau_\infty - \tau)
+                $$
+            </div>
+            <p>Substituting \(B(\tau) = \sigma T(\tau)^4\) and \(F_{net} = \sigma T_e^4\):</p>
+            <div class="math-display">
+                $$
+                T(\tau) = T_e \left[ \frac{1 + \tau_{\infty} - \tau}{2} \right]^{1/4}
+                $$
+            </div>
+            <p><em>This is the fundamental analytical solution for a gray radiative equilibrium atmosphere.</em></p>
+
+            <h2>5. Physical Implications of the Equilibrium State</h2>
+            <p>The analytical profile we just derived forces profound boundary anomalies and steep thermal gradients that are critical to understanding real planetary climates.</p>
+
+            <h3>I. The Skin Temperature (\(T_{skin}\))</h3>
+            <p>What is the temperature of the air at the absolute edge of space? Evaluate the profile at \(\tau = \tau_\infty\):</p>
+            <div class="math-display">
+                $$
+                T(\tau_\infty) = T_e \left[ \frac{1 + \tau_{\infty} - \tau_{\infty}}{2} \right]^{1/4} = T_e \left( \frac{1}{2} \right)^{1/4} \approx 0.84 T_e
+                $$
+            </div>
+            <p><strong>The Physics:</strong> The uppermost layer of the atmosphere radiates both up and down (\(2\sigma T^4\)), but only receives radiation from below (\(\sigma T_e^4\)). To balance energy, \(2T_{skin}^4 = T_e^4\). This fundamental limit explains why pure radiative planetary stratospheres are highly isothermal; they cannot cool below this boundary condition.</p>
+
+            <h3>II. The Surface Discontinuity (\(T_g\) vs \(T_{air}\))</h3>
+            <p>Let's evaluate the air temperature immediately adjacent to the ground (\(\tau = 0\)):</p>
+            <div class="math-display">
+                $$
+                T_{air}(0) = T_e \left[ \frac{1 + \tau_{\infty}}{2} \right]^{1/4}
+                $$
+            </div>
+            <p>Now, we must find the actual temperature of the solid ground, \(T_g\). The ground emission is \(I^+(0) = \sigma T_g^4\).</p>
+            <p>We can solve for \(I^+(0)\) algebraically by combining the definitions of the Sum and Difference of the fluxes at the surface:</p>
+            <ul>
+                <li>\(I^+(0) - I^-(0) = F_{net}\)</li>
+                <li>\(I^+(0) + I^-(0) = F_{net}(1 + \tau_\infty)\)</li>
+            </ul>
+            <p>Adding these two equations yields \(2I^+(0) = F_{net}(2 + \tau_\infty)\), or:</p>
+            <div class="math-display">
+                $$
+                I^+(0) = F_{net} \left( 1 + \frac{\tau_\infty}{2} \right) \implies T_g = T_e \left( 1 + \frac{\tau_\infty}{2} \right)^{1/4}
+                $$
+            </div>
+            <p><strong>The Physics:</strong> Compare \(T_g\) to \(T_{air}(0)\). Because \((1 + \tau_\infty/2)\) is strictly greater than \((0.5 + \tau_\infty/2)\), <strong>the ground is always strictly hotter than the air immediately above it</strong> in pure radiative equilibrium.</p>
+            <p>Why? The ground must heat up enough to radiate away <em>both</em> the incoming solar radiation <em>and</em> the downwelling atmospheric back-radiation (\(I^-\)). The air layer immediately above it only has to balance IR exchange.</p>
+
+            <h3>III. The Radiative Lapse Rate and Convective Instability</h3>
+            <p>To understand whether this atmosphere is dynamically stable, we must examine the vertical temperature gradient, or the <strong>lapse rate</strong> \(\Gamma_{rad} = -dT/dz\).</p>
+            <p>From our equilibrium profile \(T(\tau)\), we differentiate \(T^4\) with respect to \(\tau\):</p>
+            <div class="math-display">
+                $$
+                4T^3 \frac{dT}{d\tau} = -\frac{T_e^4}{2} \implies \frac{dT}{d\tau} = -\frac{T_e^4}{8T^3}
+                $$
+            </div>
+            <p>To find the physical lapse rate \(\Gamma_{rad}\), we use the chain rule: \(dT/dz = (dT/d\tau) \cdot (d\tau/dz)\). Since \(\tau\) is measured upward from the surface, \(d\tau/dz = \kappa \rho\).</p>
+            <div class="math-display">
+                $$
+                \Gamma_{rad} = -\frac{dT}{dz} = \left( \frac{T_e^4}{8T^3} \right) \kappa \rho
+                $$
+            </div>
+            <p><strong>Eliminating Temperature:</strong> As derived, this equation is unsatisfying because \(T\) is in the denominator. To reveal the true physical bounds, we must eliminate \(T\) entirely.</p>
+            <p>First, substitute density \(\rho\) using the Ideal Gas Law (\(\rho = p / RT\)):</p>
+            <div class="math-display">
+                $$
+                \Gamma_{rad} = \frac{\kappa p T_e^4}{8 R T^4}
+                $$
+            </div>
+            <p>Now, substitute our exact analytical solution for \(T^4 = T_e^4 \left[ \frac{1 + \tau_\infty - \tau}{2} \right]\) into the denominator:</p>
+            <div class="math-display">
+                $$
+                \Gamma_{rad} = \frac{\kappa p T_e^4}{8 R \left( T_e^4 \left[ \frac{1 + \tau_\infty - \tau}{2} \right] \right)} = \frac{\kappa p}{4 R (1 + \tau_\infty - \tau)}
+                $$
+            </div>
+            <p>Let's define \(\tau^* = \tau_\infty - \tau\) as the optical depth measured from space <em>downward</em>. We can relate \(\tau^*\) to pressure \(p\) via hydrostatic balance (\(dp = -\rho g dz\)). Since \(d\tau^* = -\kappa \rho dz\), it follows that \(d\tau^* = (\kappa/g) dp\). Assuming the absorber is well-mixed (\(\kappa\) is constant), integrating from space downwards yields \(\tau^* = \kappa p / g\), or \(p = g \tau^* / \kappa\).</p>
+            <p>Substituting \(p\) into our equation perfectly eliminates \(\kappa\):</p>
+            <div class="math-display">
+                $$
+                \Gamma_{rad} = \frac{\kappa \left(\frac{g \tau^*}{\kappa}\right)}{4 R (1 + \tau^*)} = \frac{g}{4 R} \left( \frac{\tau^*}{1 + \tau^*} \right)
+                $$
+            </div>
+            
+            <p><strong>Physical Interpretation:</strong></p>
+            <p>This is a beautiful, temperature-independent result that reveals three profound insights:</p>
+            <ol>
+                <li><strong>The Deep Atmosphere Limit:</strong> Deep in an optically thick atmosphere (\(\tau^* \to \infty\)), the term \(\frac{\tau^*}{1 + \tau^*} \to 1\). The radiative lapse rate hits a hard asymptotic ceiling: \(\Gamma_{rad} \to \frac{g}{4R}\).</li>
+                <li><strong>The Condition for Convection:</strong> An atmosphere becomes unstable and convects if \(\Gamma_{rad}\) exceeds the dry adiabatic lapse rate \(\Gamma_a = g/c_p\). Therefore, a purely gray atmosphere will <em>only</em> convect if \(\frac{g}{4R} &gt; \frac{g}{c_p}\), which simplifies to the condition: \(c_p &gt; 4R\).</li>
+                <li><strong>The Earth Paradox:</strong> For a diatomic gas like Earth's atmosphere (\(N_2/O_2\)), \(c_p \approx 3.5 R\). Because \(3.5 R\) is less than \(4 R\), <strong>a well-mixed, perfectly gray Earth atmosphere would actually never convect!</strong> This proves that real-world convection requires one of two things: either a polyatomic gas with a very high heat capacity (like a pure \(CO_2\) atmosphere), or "non-gray" properties where opacity \(\kappa\) increases strongly near the surface (like water vapor scaling with pressure/temperature).</li>
+            </ol>
+
+        </article>
+    </div>
+
+</body>
+</html>
