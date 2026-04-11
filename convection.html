@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture: Dry Convection and Atmospheric Stability</title>
+    <!-- Proven MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            chtml: {
+                scale: 1.05,
+                displayAlign: 'center'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            background-color: #ffffff;
+        }
+        header {
+            text-align: center;
+            border-bottom: 2px solid #34495e;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+        }
+        h1 { color: #2c3e50; font-size: 2.2rem; }
+        h2 { color: #2980b9; margin-top: 2.5rem; border-bottom: 1px solid #e0e6ed; padding-bottom: 0.3rem; }
+        h3 { color: #34495e; margin-top: 1.5rem; }
+        p { margin-bottom: 1.2rem; }
+        .math-block {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        .transcript-note {
+            background-color: #fdfaf0;
+            border-left: 4px solid #f1c40f;
+            padding: 1.2rem;
+            margin: 1.5rem 0;
+            font-style: normal;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .transcript-note strong { color: #d35400; }
+        .reference-box {
+            background-color: #f0f7fb;
+            border-left: 4px solid #3498db;
+            padding: 1.5rem;
+            margin-top: 4rem;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        ul { margin-bottom: 1.5rem; }
+        li { margin-bottom: 0.8rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Lecture: Dry Convection and Atmospheric Stability</h1>
+    <p><em>Module: Energy Exchange in Climate Systems</em></p>
+</header>
+
+<section>
+    <h2>1. The Three Modes of Energy Exchange</h2>
+    <p>We have formalized three distinct modes by which a planet manages its energy:</p>
+    <ol>
+        <li><strong>Radiation:</strong> Transfer via photons. Pure radiative equilibrium forces a massive temperature discontinuity at the surface.</li>
+        <li><strong>Turbulent Heat Exchange:</strong> Boundary-layer eddies pull heat out of the ground to resolve the discontinuity, dumping it into the lowest few hundred meters of air.</li>
+        <li><strong>Convection:</strong> Once the boundary layer is heated, how does that energy propagate <em>deep</em> into the troposphere? It does so via macroscopic, buoyancy-driven overturning.</li>
+    </ol>
+    
+    <div class="transcript-note">
+        <strong>The Kites and Eagles Analogy:</strong>
+        If you observe eagles soaring, they are locating "thermals." Because the surface is heterogeneously heated, some air parcels become preferentially warmer and move upward in massive columns (hundreds of meters across). These thermals are so large that we can assume the air in the center does not mix significantly with the surrounding environment. This justifies treating convective movement as an <em>adiabatic</em> process.
+    </div>
+</section>
+
+<section>
+    <h2>2. The Environmental Constraint: Hydrostatic Balance</h2>
+    <p>The atmosphere is a density-stratified fluid pinned to a planet by gravity. The background state is governed by <strong>Hydrostatic Balance</strong>:</p>
+    
+    <div class="math-block">
+        \[ \frac{dp}{dz} = -\rho g \]
+    </div>
+
+    <p>Combining this with the Ideal Gas Law (\(p = \rho R T\)), both pressure and density decrease exponentially with height. Any air parcel attempting to convect must navigate this intensely stratified environment.</p>
+</section>
+
+<section>
+    <h2>3. Displacing a Parcel: Defining Stability</h2>
+    <p>We use the "Parcel Method" to determine stability by pushing a discrete blob of air vertically and comparing its new density (\(\rho_{parcel}\)) to the surrounding environment (\(\rho_{env}\)):</p>
+    <ul>
+        <li><strong>Stable:</strong> Displaced upward, it finds itself heavier than the surrounding air (\(\rho_{parcel} > \rho_{env}\)) and sinks back down. It oscillates around its origin.</li>
+        <li><strong>Neutral:</strong> Pushed up or down, its density exactly matches the new environment. It stays where left.</li>
+        <li><strong>Unstable:</strong> Pushed upward, it finds itself lighter than the surrounding air (\(\rho_{parcel} < \rho_{env}\)) and continues to accelerate upward, triggering active convection.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>4. The Difficulty of a Compressible Fluid</h2>
+    <p>If the atmosphere were incompressible (like water), determining stability would be trivial. However, air is a compressible gas.</p>
+    
+    <div class="transcript-note">
+        <strong>The Speed of Sound & Adiabatic Expansion:</strong>
+        When a parcel is displaced vertically, it enters a region of different environmental pressure. <strong>The pressure of the parcel adjusts instantaneously to match the environment.</strong> Why? Because pressure differences equalize at the speed of sound (~340 m/s), whereas the convecting air parcel only rises at a few meters per second.<br><br>
+        Because the parcel is forced to match the exponentially decaying background pressure while moving adiabatically, it acts like an insulated balloon: <strong>it must physically expand as it rises and compress as it sinks.</strong>
+    </div>
+
+    <p>This adiabatic expansion does work, consuming internal energy and lowering the temperature. Therefore, the act of moving up changes the parcel's density completely independently of the initial perturbation. We cannot simply compare a surface parcel's initial temperature to the air 5 kilometers above it.</p>
+</section>
+
+<section>
+    <h2>5. The Thermodynamic Stepping Stone: Enthalpy</h2>
+    
+    <div class="transcript-note">
+        <strong>The Search for an Invariant:</strong>
+        In physics, when a system undergoes a complex transformation, we search for an <em>invariant of motion</em>. Think of projectile motion: horizontal and vertical velocities are changing, but the total energy (Kinetic + Potential) remains conserved. This invariant forces the trajectory into a parabola. We need a similar invariant to track our adiabatically expanding air parcel.
+    </div>
+
+    <p>In the First Law (\(dq = du + p d\alpha\)), internal energy (\(u\)) is not conserved because the parcel is constantly doing \(p d\alpha\) work. We switch to a property that bundles internal heat and expansion work together: <strong>Enthalpy (\(h = u + p\alpha\))</strong>.</p>
+    <p>Taking the differential and rewriting the First Law:</p>
+    <div class="math-block">
+        \[ dq = dh - \alpha dp \]
+    </div>
+    <p>Because the parcel moves adiabatically (\(dq = 0\)):</p>
+    <div class="math-block">
+        \[ dh = \alpha dp \]
+    </div>
+    <p><em>Note:</em> Enthalpy itself is not invariant! As the parcel rises to lower pressure (\(dp < 0\)), its enthalpy decreases. It is the "currency" being spent.</p>
+
+    <h3>Dry Static Energy (DSE)</h3>
+    <p>Now we apply the critical constraint. The parcel's pressure change (\(dp\)) is dictated completely by its vertical movement through the hydrostatic background: \(dp = -\rho g dz\).</p>
+    <div class="math-block">
+        \[ dh = \alpha (-\rho g dz) \]
+    </div>
+    <p>Because \(\alpha = 1/\rho\), density cancels out:</p>
+    <div class="math-block">
+        \[ dh = -g dz \implies d(h + g z) = 0 \]
+    </div>
+    <p>Integrating yields our true invariant of motion. For an ideal gas (\(dh = c_p dT\)), we get <strong>Dry Static Energy (\(s\))</strong>:</p>
+    <div class="math-block">
+        \[ s = c_p T + g z = \text{constant} \]
+    </div>
+    <p><strong>Physical Intuition:</strong> The thermodynamic work the parcel does by expanding (\(-\alpha dp\)) is mathematically and physically identical to doing work against gravity (\(g dz\)). By expanding against the hydrostatic pressure field, the parcel is quite literally <em>lifting the weight of the overlying atmosphere</em>.</p>
+</section>
+
+<section>
+    <h2>6. Potential Temperature (\(\theta\)) & The Dry Adiabatic Lapse Rate</h2>
+    <p>Meteorologists express this invariant as <strong>Potential Temperature (\(\theta\))</strong>—the temperature a parcel would have if brought adiabatically to a standard reference pressure (\(p_0\)):</p>
+    <div class="math-block">
+        \[ \theta = T \left( \frac{p_0}{p} \right)^{R/c_p} \]
+    </div>
+
+    <p>We now ask: as the parcel rises, how much does its actual, sensible temperature (\(T\)) drop? Returning to the differential invariant \(c_p dT + g dz = 0\), we solve for the gradient:</p>
+    <div class="math-block">
+        \[ \Gamma_d = -\frac{dT}{dz}_{parcel} = \frac{g}{c_p} \approx 9.8 \text{ K/km} \]
+    </div>
+
+    <p>This is the <strong>Dry Adiabatic Lapse Rate (\(\Gamma_d\))</strong>. We have solved the stability problem:</p>
+    <ul>
+        <li>If \(\Gamma_{env} > \Gamma_d\) (or \(\frac{d\theta}{dz} < 0\)), the atmosphere is <strong>Unstable</strong>.</li>
+        <li>If \(\Gamma_{env} = \Gamma_d\) (or \(\frac{d\theta}{dz} = 0\)), the atmosphere is <strong>Neutral</strong>.</li>
+        <li>If \(\Gamma_{env} < \Gamma_d\) (or \(\frac{d\theta}{dz} > 0\)), the atmosphere is <strong>Stable</strong>.</li>
+    </ul>
+</section>
+
+<div class="reference-box">
+    <strong>Suggested Reading:</strong> 
+    For an expanded treatment of adiabatic invariants and the mathematical formalization of potential temperature, see <strong>Pierrehumbert, R. T. (2010), <em>Principles of Planetary Climate</em>, Chapter 5: "Atmospheric Thermodynamics and Stability."</strong>
+</div>
+
+</body>
+</html>
