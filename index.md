@@ -18,4 +18,7 @@ view them as and when they are uploaded.
 * Lecture Note 6: [Transition to a continuous atmosphere](./radiative_transfer.html)
 * Lecture Note 7: [Basics of Radiative Transfer](./radiative_transfer2.html)
 * Lecture Note 8: [Gray Gas radiative equilibrium](./gray_gas.html)
-* Lecture Note 8: [Summary of lecture discussions](./lecture_summary.html)
+* Lecture Note 9: [Summary of lecture discussions](./lecture_summary.html)
+* Lecture Note 10: [Turbulent heat exchange](./turbulent.html)
+* Lecture Note 11: [Dry convection](./convection.html)
+* Lecture Note 12: [Radiative-convective equilibrium](./rce.html)
